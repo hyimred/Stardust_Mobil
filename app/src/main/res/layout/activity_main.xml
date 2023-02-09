@@ -83,13 +83,17 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_login_ui"
+                    android:paddingHorizontal="20dp"
+                    android:backgroundTint="#0177C7"
                     android:fontFamily="@font/play_bold"
                     android:text="Jelentkezz be"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff" />
 
             </LinearLayout>
 
