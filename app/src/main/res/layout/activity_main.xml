@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_root"
+    android:background="@drawable/gradient_animation"
     tools:context=".MainActivity">
 
         <LinearLayout
@@ -11,7 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:background="#444444"
             android:padding="25dp"
             android:orientation="vertical">
 
@@ -20,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_login_ui"
-                android:backgroundTint="#99A7A7A7"
+                android:backgroundTint="#C3F4F4F4"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="25dp">
@@ -38,7 +39,9 @@
                     android:id="@+id/login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_login_ui"
+                    android:backgroundTint="#ffffff"
                     android:fontFamily="@font/play_bold"
                     android:hint="E-mail address"
                     android:textAlignment="center"
@@ -49,9 +52,11 @@
                     android:id="@+id/login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/rounded_login_ui"
+                    android:backgroundTint="#ffffff"
                     android:fontFamily="@font/play_bold"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -62,25 +67,32 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="25dp">
+                    android:padding="0dp">
 
-                    <Button
-                        android:id="@+id/btn_reset"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reset"
                         android:fontFamily="@font/play_bold"
-                        android:textAllCaps="false" />
+                        android:text="Maradjak bejelentkezve"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
 
-                    <Button
-                        android:id="@+id/btn_submit"
+                    <CheckBox
+                        android:id="@+id/login_keep"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Submit"
-                        android:fontFamily="@font/play_bold"
-                        android:textAllCaps="false" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/play_bold"
+                    android:text="Jelentkezz be"
+                    android:textAllCaps="false" />
+
             </LinearLayout>
+
         </LinearLayout>
 
 </RelativeLayout>
