@@ -31,24 +31,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bars_solid">
-
         </Button>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="auto"
-            android:layout_marginStart="au"
-            android:layout_marginTop="au"
-            android:layout_marginEnd="au"
-            android:layout_marginBottom="au"
-            android:fontFamily="@font/play_bold"
-            android:text="Üdv Felhasználó!"
-            android:textColor="#000"
-            android:textSize="15sp">
-
-        </TextView>
 
         <Button
             android:id="@+id/btn_new"
@@ -60,8 +43,6 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/plus_solid">
-
-
         </Button>
 
     </RelativeLayout>
