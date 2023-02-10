@@ -18,7 +18,7 @@ class LoadingActivity : AppCompatActivity() {
         val layout_root = findViewById<View>(R.id.layout_root) as View
         val animatedDrawable = layout_root.background as AnimationDrawable
         animatedDrawable.setEnterFadeDuration(10)
-        animatedDrawable.setExitFadeDuration(3500)
+        animatedDrawable.setExitFadeDuration(5000)
         animatedDrawable.start()
         splashScreenAnimation()
     }
