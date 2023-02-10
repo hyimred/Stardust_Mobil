@@ -12,25 +12,55 @@
         android:id="@+id/menu_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#C3F4F4F4"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_login_ui"
+        android:backgroundTint="#73B8B6B6"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <Button android:text="ICON 1"
+        <Button
             android:id="@+id/btn_menu"
-            android:layout_margin="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bars_solid">
 
         </Button>
 
-        <Button android:text="ICON 2"
-            android:id="@+id/btn_new"
-            android:layout_margin="5dp"
-            android:layout_alignParentRight="true"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="auto"
+            android:layout_marginStart="au"
+            android:layout_marginTop="au"
+            android:layout_marginEnd="au"
+            android:layout_marginBottom="au"
+            android:fontFamily="@font/play_bold"
+            android:text="Üdv Felhasználó!"
+            android:textColor="#000"
+            android:textSize="15sp">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/btn_new"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/plus_solid">
+
 
         </Button>
 
