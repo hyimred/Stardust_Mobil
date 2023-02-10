@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -32,6 +33,19 @@ class RegisterActivity : AppCompatActivity() {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 
             }, SPLASH_TIME_OUT.toLong())
+        }
+
+        val btn_submit = findViewById<View>(R.id.btn_submit) as Button
+        btn_submit.setOnClickListener {
+            Handler().postDelayed({
+                val intent =
+                    Intent(this@RegisterActivity, LoginActivity::class.java)
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+
+            }, SPLASH_TIME_OUT.toLong())
+            Toast.makeText(applicationContext,"Sikeres regisztráció!",Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -32,5 +32,17 @@ class LoginActivity : AppCompatActivity() {
 
             }, SPLASH_TIME_OUT.toLong())
         }
+
+        val btn_submit = findViewById<View>(R.id.btn_submit) as Button
+        btn_submit.setOnClickListener {
+            Handler().postDelayed({
+                val intent =
+                    Intent(this@LoginActivity, LoginLoadingActivity::class.java)
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+            }, SPLASH_TIME_OUT.toLong())
+        }
     }
 }
