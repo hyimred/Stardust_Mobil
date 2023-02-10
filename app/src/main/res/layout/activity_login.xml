@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_root"
+    android:id="@+id/layout_root_login"
     android:background="@drawable/gradient_animation"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
         <LinearLayout
             android:id="@+id/ll_main_layout"
