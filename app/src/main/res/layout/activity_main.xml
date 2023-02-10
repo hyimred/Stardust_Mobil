@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/play_bold"
-                    android:padding="30dp"
+                    android:paddingBottom="30dp"
                     android:text="Belépés"
                     android:textColor="#000000"
                     android:textSize="25dp" />
@@ -43,7 +43,7 @@
                     android:background="@drawable/rounded_login_ui"
                     android:backgroundTint="#ffffff"
                     android:fontFamily="@font/play_bold"
-                    android:hint="E-mail address"
+                    android:hint="E-mail Cím"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textColorHint="#000000" />
@@ -56,7 +56,7 @@
                     android:background="@drawable/rounded_login_ui"
                     android:backgroundTint="#ffffff"
                     android:fontFamily="@font/play_bold"
-                    android:hint="Password"
+                    android:hint="Jelszó"
                     android:inputType="textPassword"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -66,8 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="0dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -81,6 +80,32 @@
                         android:id="@+id/login_keep"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/play_bold"
+                        android:text="Még nincs fiókod?"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:fontFamily="@font/play_bold"
+                        android:paddingLeft="5dp"
+                        android:text="Regisztrálj itt"
+                        android:textAllCaps="false"
+                        android:textColor="#0177C7" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
