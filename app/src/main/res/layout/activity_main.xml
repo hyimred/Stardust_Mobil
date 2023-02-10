@@ -8,4 +8,32 @@
     android:background="@drawable/gradient_animation"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/menu_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C3F4F4F4"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button android:text="ICON 1"
+            android:id="@+id/btn_menu"
+            android:layout_margin="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </Button>
+
+        <Button android:text="ICON 2"
+            android:id="@+id/btn_new"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </Button>
+
+    </RelativeLayout>
+
 </RelativeLayout>
