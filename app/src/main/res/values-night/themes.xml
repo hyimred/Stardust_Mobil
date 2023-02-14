@@ -26,4 +26,11 @@
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
+
+    <style name="CustomPopUpStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:itemBackground">@drawable/rounded_login_ui</item>
+        <item name="android:backgroundTint">#73B8B6B6</item>
+    </style>
+
 </resources>

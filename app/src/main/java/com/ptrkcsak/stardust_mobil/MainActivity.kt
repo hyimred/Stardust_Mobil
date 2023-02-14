@@ -2,16 +2,19 @@ package com.ptrkcsak.stardust_mobil
 
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
-import android.widget.Toast
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+
 class MainActivity : AppCompatActivity() {
     val SPLASH_TIME_OUT = 1;
+    var data = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,11 +30,11 @@ class MainActivity : AppCompatActivity() {
         btn_menu.setOnClickListener {
             showPopup(btn_menu)
         }
-    }
 
+    }
     private fun showPopup(view: View) {
         val popup = PopupMenu(this, view)
-        popup.inflate(R.menu.menu)
+        popup.inflate(R.menu.main_menu)
         popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
             when (item!!.itemId) {
                 R.id.categories -> {
