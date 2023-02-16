@@ -5,5 +5,7 @@
     <item android:duration="5000"
         android:drawable="@drawable/gradient_center"/>
     <item android:duration="5000"
+        android:drawable="@drawable/gradient_center_2"/>
+    <item android:duration="5000"
         android:drawable="@drawable/gradient_end"/>
 </animation-list>
