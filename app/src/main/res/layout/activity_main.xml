@@ -10,7 +10,7 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"/>
@@ -19,9 +19,10 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/main_menu"
+        android:layout_gravity="bottom"
         app:hideOnScroll="true"
-        android:layout_gravity="bottom"/>
+        android:backgroundTint="#C3F4F4F4"
+        app:menu="@menu/main_menu"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_new"
@@ -29,7 +30,5 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/plus_solid"
         app:layout_anchor="@id/bottomAppBar"/>
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

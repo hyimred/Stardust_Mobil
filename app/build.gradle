@@ -36,21 +36,21 @@ android {
 }
 
 dependencies {
-    //Lottie
+    //Added
     implementation 'com.airbnb.android:lottie:6.0.0'
-
-    //Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-
     implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-basement:18.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

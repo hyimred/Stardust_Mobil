@@ -6,12 +6,11 @@
                 android:id="@+id/profile"
                 android:icon="@drawable/user_solid"
                 android:title="Profil"
-                app:showAsAction="never"
-                />
+                app:showAsAction="always"/>
             <item
                 android:id="@+id/settings"
                 android:icon="@drawable/gear_solid"
                 android:title="Beállítások"
-                app:showAsAction="never"
-                />
+                app:showAsAction="always"/>
 </menu>
+
