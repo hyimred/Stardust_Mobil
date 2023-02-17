@@ -8,18 +8,17 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuView
+import com.google.android.material.bottomappbar.BottomAppBar
 
 
 class MainActivity : AppCompatActivity() {
     val SPLASH_TIME_OUT = 1;
-    var data = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_menu = findViewById<Button>(R.id.btn_menu)
         val layout_root = findViewById<View>(R.id.layout_root_main) as View
         val animatedDrawable = layout_root.background as AnimationDrawable
 
@@ -27,43 +26,25 @@ class MainActivity : AppCompatActivity() {
         animatedDrawable.setExitFadeDuration(5000)
         animatedDrawable.start()
 
-        btn_menu.setOnClickListener {
-            showPopup(btn_menu)
+        val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+        bottomAppBar.setNavigationOnClickListener {
+            // Handle navigation icon press
         }
 
-    }
-    private fun showPopup(view: View) {
-        val popup = PopupMenu(this, view)
-        popup.inflate(R.menu.main_menu)
-        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item: MenuItem? ->
-            when (item!!.itemId) {
-                R.id.categories -> {
-
-                }
+        bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
                 R.id.profile -> {
-                    Handler().postDelayed({
-                        val intent =
-                            Intent(this@MainActivity, ProfileActivity::class.java)
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                    }, SPLASH_TIME_OUT.toLong())
+                    // Handle search icon press
+                    true
                 }
                 R.id.settings -> {
-                    Handler().postDelayed({
-                        val intent =
-                            Intent(this@MainActivity, SettingsActivity::class.java)
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                    }, SPLASH_TIME_OUT.toLong())
+                    // Handle more item (inside overflow menu) press
+                    true
                 }
+                else -> false
             }
-            true
-        })
-        popup.show()
+        }
+
     }
 
 

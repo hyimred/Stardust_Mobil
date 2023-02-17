@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-            <item
-                android:id="@+id/categories"
-                android:title="Kategóriák"
-                app:showAsAction="never"
-                />
+
             <item
                 android:id="@+id/profile"
+                android:icon="@drawable/user_solid"
                 android:title="Profil"
                 app:showAsAction="never"
                 />
             <item
                 android:id="@+id/settings"
+                android:icon="@drawable/gear_solid"
                 android:title="Beállítások"
                 app:showAsAction="never"
                 />
