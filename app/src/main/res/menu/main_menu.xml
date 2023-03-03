@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/view"
+            android:icon="@drawable/baseline_today"
+            android:title="Naptár nézet"
+            app:showAsAction="always"/>
 
-            <item
-                android:id="@+id/profile"
-                android:icon="@drawable/baseline_account_circle"
-                android:title="Profil"
-                app:showAsAction="always"/>
-            <item
-                android:id="@+id/settings"
-                android:icon="@drawable/baseline_settings"
-                android:title="Beállítások"
-                app:showAsAction="always"/>
+        <item
+            android:id="@+id/tags"
+            android:icon="@drawable/baseline_tag"
+            android:title="Tagek"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/filter"
+            android:icon="@drawable/baseline_filter"
+            android:title="Szűrés"
+            app:showAsAction="always"/>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/baseline_account_circle"
+            android:title="Profil"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/baseline_settings"
+            android:title="Beállítások"
+            app:showAsAction="always"/>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/baseline_logout"
+            android:title="Kijelentkezés"
+            app:showAsAction="always"/>
+    </group>
+
 </menu>
 

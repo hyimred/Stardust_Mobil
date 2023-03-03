@@ -1,18 +1,14 @@
 package com.ptrkcsak.stardust_mobil
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
-import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.http.GET
-import retrofit2.http.Path
 
 
 class MainActivity : AppCompatActivity() {
@@ -56,11 +52,9 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.profile -> {
-                    Toast.makeText(this, "My Profile", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.settings -> {
-                    Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> {
@@ -68,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
 }
