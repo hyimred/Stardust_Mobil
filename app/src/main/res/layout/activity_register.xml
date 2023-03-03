@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_root_register"
-    android:background="@drawable/gradient_animation"
+    android:background="@color/material_dynamic_neutral10"
     tools:context=".RegisterActivity">
 
     <LinearLayout
@@ -100,7 +100,7 @@
                     android:paddingLeft="5dp"
                     android:text="Jelentkezz be"
                     android:textAllCaps="false"
-                    android:textColor="#0177C7" />
+                    android:textColor="@color/material_dynamic_neutral10" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_login_ui"
                 android:paddingHorizontal="20dp"
-                android:backgroundTint="#0177C7"
+                android:backgroundTint="@color/material_dynamic_neutral10"
                 android:fontFamily="@font/play_bold"
                 android:text="Regisztrálok"
                 android:textAllCaps="false"

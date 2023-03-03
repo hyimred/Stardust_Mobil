@@ -16,11 +16,6 @@ class LoginLoadingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_loading)
 
-        val layout_root = findViewById<View>(R.id.layout_root_loading) as View
-        val animatedDrawable = layout_root.background as AnimationDrawable
-        animatedDrawable.setEnterFadeDuration(10)
-        animatedDrawable.setExitFadeDuration(5000)
-        animatedDrawable.start()
         splashScreenAnimation()
     }
 

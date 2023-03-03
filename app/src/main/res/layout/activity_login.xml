@@ -1,128 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout_root_login"
-    android:background="@drawable/gradient_animation"
+    android:background="@color/material_dynamic_neutral10"
     tools:context=".LoginActivity">
 
-        <LinearLayout
-            android:id="@+id/ll_main_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="25dp"
-            android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="25dp">
 
-            <LinearLayout
-                android:id="@+id/login_box"
+        <LinearLayout
+            android:id="@+id/login_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_login_ui"
+            android:backgroundTint="#C3F4F4F4"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/play_bold"
+                android:paddingBottom="30dp"
+                android:text="Belépés"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_login_ui"
-                android:backgroundTint="#C3F4F4F4"
+                android:backgroundTint="#ffffff"
+                android:fontFamily="@font/play_bold"
+                android:hint="E-mail Cím"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_login_ui"
+                android:backgroundTint="#ffffff"
+                android:fontFamily="@font/play_bold"
+                android:hint="Jelszó"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="25dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/play_bold"
-                    android:paddingBottom="30dp"
-                    android:text="Belépés"
+                    android:text="Maradjak bejelentkezve"
                     android:textColor="#000000"
-                    android:textSize="25dp" />
+                    android:textSize="15dp" />
 
-                <EditText
-                    android:id="@+id/login_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_login_ui"
-                    android:backgroundTint="#ffffff"
-                    android:fontFamily="@font/play_bold"
-                    android:hint="E-mail Cím"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000" />
-
-                <EditText
-                    android:id="@+id/login_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/rounded_login_ui"
-                    android:backgroundTint="#ffffff"
-                    android:fontFamily="@font/play_bold"
-                    android:hint="Jelszó"
-                    android:inputType="textPassword"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/play_bold"
-                        android:text="Maradjak bejelentkezve"
-                        android:textColor="#000000"
-                        android:textSize="15dp" />
-
-                    <CheckBox
-                        android:id="@+id/login_keep"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/play_bold"
-                        android:text="Még nincs fiókod?"
-                        android:textColor="#000000"
-                        android:textSize="15dp" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_register"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/transparent"
-                        android:fontFamily="@font/play_bold"
-                        android:paddingLeft="5dp"
-                        android:text="Regisztrálj itt"
-                        android:textAllCaps="false"
-                        android:textColor="#0177C7" />
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_submit"
+                <CheckBox
+                    android:id="@+id/login_keep"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_login_ui"
-                    android:paddingHorizontal="20dp"
-                    android:backgroundTint="#0177C7"
-                    android:fontFamily="@font/play_bold"
-                    android:text="Jelentkezz be"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff" />
-
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/play_bold"
+                    android:text="Még nincs fiókod?"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/play_bold"
+                    android:paddingLeft="5dp"
+                    android:text="Regisztrálj itt"
+                    android:textAllCaps="false"
+                    android:textColor="@color/material_dynamic_neutral10" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_login_ui"
+                android:backgroundTint="@color/material_dynamic_neutral10"
+                android:fontFamily="@font/play_bold"
+                android:paddingHorizontal="20dp"
+                android:text="Jelentkezz be"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
         </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

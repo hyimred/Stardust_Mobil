@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_root_profile"
-    android:background="@drawable/gradient_animation"
+    android:background="@color/material_dynamic_neutral10"
     tools:context=".ProfileActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,12 +4,12 @@
 
             <item
                 android:id="@+id/profile"
-                android:icon="@drawable/user_solid"
+                android:icon="@drawable/baseline_account_circle"
                 android:title="Profil"
                 app:showAsAction="always"/>
             <item
                 android:id="@+id/settings"
-                android:icon="@drawable/gear_solid"
+                android:icon="@drawable/baseline_settings"
                 android:title="Beállítások"
                 app:showAsAction="always"/>
 </menu>

@@ -15,12 +15,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val layout_root = findViewById<View>(R.id.layout_root_login) as View
-        val animatedDrawable = layout_root.background as AnimationDrawable
-        animatedDrawable.setEnterFadeDuration(10)
-        animatedDrawable.setExitFadeDuration(5000)
-        animatedDrawable.start()
-
         val btn_register = findViewById<View>(R.id.btn_register) as Button
         btn_register.setOnClickListener {
             Handler().postDelayed({
