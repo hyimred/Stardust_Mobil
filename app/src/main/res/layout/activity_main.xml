@@ -26,18 +26,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:backgroundTint="#575757"
+            app:fabAlignmentMode="end"
             app:hideOnScroll="true"
             app:navigationIcon="@drawable/baseline_menu"
-            android:backgroundTint="@color/white"
-            app:fabAlignmentMode="end"/>
+            app:navigationIconTint="#FFFFFF" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_new"
-            android:contentDescription="FAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/baseline_add_42"
-            app:layout_anchor="@id/bottomAppBar"/>
+            android:backgroundTint="#B2FFFFFF"
+            android:contentDescription="FAB"
+            app:layout_anchor="@id/bottomAppBar"
+            app:srcCompat="@drawable/baseline_add_42" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -47,6 +49,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/main_menu"
+        android:backgroundTint="#575757"
         app:headerLayout="@layout/nav_header"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
