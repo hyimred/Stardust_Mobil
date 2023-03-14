@@ -6,7 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,6 +34,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val btn_submit = findViewById<View>(R.id.btn_submit) as Button
+        val login_email = findViewById<View>(R.id.login_email) as EditText
+        val login_password = findViewById<View>(R.id.login_password) as EditText
+
         btn_submit.setOnClickListener {
             Handler().postDelayed({
                 val intent =
@@ -36,7 +45,28 @@ class LoginActivity : AppCompatActivity() {
                 finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-            }, SPLASH_TIME_OUT.toLong())
+            }, SPLASH_TIME_OUT.toLong());
+            signin(login_email.toString(),login_password.toString())
         }
+    }
+    private fun signin(email: String, password: String){
+        val retIn = RetrofitInstance.getRetrofitInstance().create(ApiInterface::class.java)
+        val signInInfo = SignInBody(email, password)
+        retIn.signin(signInInfo).enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.code() == 200) {
+                    Toast.makeText(this@LoginActivity, "Login success!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@LoginActivity, "Login failed!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }

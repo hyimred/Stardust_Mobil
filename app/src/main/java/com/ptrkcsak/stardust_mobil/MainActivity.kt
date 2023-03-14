@@ -1,5 +1,6 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -30,18 +31,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        bottomAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.profile -> {
-                    true
-                }
-                R.id.settings -> {
-                    true
-                }
-                else -> false
-            }
-        }
-
         drawerLayout = findViewById(R.id.drawerLayout)
         actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
         drawerLayout.addDrawerListener(actionBarToggle)
@@ -52,9 +41,11 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.profile -> {
+                    startActivity(Intent(this@MainActivity,ProfileActivity::class.java))
                     true
                 }
                 R.id.settings -> {
+                    startActivity(Intent(this@MainActivity,SettingsActivity::class.java))
                     true
                 }
                 else -> {
