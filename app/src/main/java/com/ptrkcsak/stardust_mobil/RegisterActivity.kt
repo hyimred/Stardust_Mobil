@@ -4,12 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +20,6 @@ import androidx.core.view.WindowInsetsControllerCompat
 class RegisterActivity : AppCompatActivity() {
 
     val SPLASH_TIME_OUT = 1;
-    var currentTime: Date = Calendar.getInstance().getTime()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +48,10 @@ class RegisterActivity : AppCompatActivity() {
         val register_password = findViewById<View>(R.id.register_password) as EditText
         val register_re_password = findViewById<View>(R.id.register_re_password) as EditText
 
-        val email = register_email.text.toString()
-        val pwd = register_password.text.toString()
-        val re_pwd = register_re_password.text.toString()
-
         btn_submit.setOnClickListener {
+            val email = register_email.text.toString()
+            val pwd = register_password.text.toString()
+            val re_pwd = register_re_password.text.toString()
             if (pwd == re_pwd){
                 Handler().postDelayed({
                     val intent =
@@ -69,8 +65,6 @@ class RegisterActivity : AppCompatActivity() {
             } else {Toast.makeText(this@RegisterActivity, "A két jelszó különbözik!", Toast.LENGTH_SHORT)
                 .show()
             }
-            println(pwd)
-            println(re_pwd)
         }
     }
 
