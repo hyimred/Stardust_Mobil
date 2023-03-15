@@ -2,6 +2,7 @@ package com.ptrkcsak.stardust_mobil
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -12,8 +13,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.navigation.NavigationView
-
-
 class MainActivity : AppCompatActivity() {
 
     private var recyclerView: RecyclerView? = null
@@ -38,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                 this.drawerLayout.closeDrawer(GravityCompat.START)
                 super.onBackPressed()
             }
+        }
+
+        val btn_new = findViewById<Button>(R.id.btn_new)
+
+        btn_new.setOnClickListener{
         }
 
         drawerLayout = findViewById(R.id.drawerLayout)
