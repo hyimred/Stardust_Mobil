@@ -47,15 +47,10 @@ class LoginActivity : AppCompatActivity() {
         val login_password = findViewById<View>(R.id.login_password) as EditText
 
         btn_submit.setOnClickListener {
-            Handler().postDelayed({
-                val intent =
-                    Intent(this@LoginActivity, LoginLoadingActivity::class.java)
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-            }, SPLASH_TIME_OUT.toLong());
-            signin(login_email.toString(),login_password.toString())
+            val email = login_email.text.toString()
+            val password = login_password.text.toString()
+            signin(email, password)
+            println(email+"   "+password)
         }
     }
     private fun signin(email: String, password: String){
@@ -70,8 +65,17 @@ class LoginActivity : AppCompatActivity() {
                 ).show()
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.code() == 200) {
+                if (response.code() == 200 || response.code() == 201) {
                     Toast.makeText(this@LoginActivity, "Login success!", Toast.LENGTH_SHORT).show()
+                    Handler().postDelayed({
+                        val intent =
+                            Intent(this@LoginActivity, LoginLoadingActivity::class.java)
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                    }, SPLASH_TIME_OUT.toLong());
+                    println(response.code())
                 } else {
                     Toast.makeText(this@LoginActivity, "Login failed!", Toast.LENGTH_SHORT).show()
                 }

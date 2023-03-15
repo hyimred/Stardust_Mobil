@@ -11,7 +11,7 @@ import retrofit2.http.POST
 
 interface ApiInterface {
     @Headers("Content-Type:application/json")
-    @POST("auth_tokens")
+    @POST("/auth/login")
     fun signin(@Body info: SignInBody): retrofit2.Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
