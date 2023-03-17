@@ -16,9 +16,7 @@ interface ApiInterface {
 
     @Headers("Content-Type:application/json")
     @POST("/auth/signup")
-    fun registerUser(
-        @Body info: UserBody
-    ): retrofit2.Call<ResponseBody>
+    fun registerUser(@Body info: UserBody): retrofit2.Call<ResponseBody>
 }
 class RetrofitInstance {
     companion object {

@@ -1,7 +1,6 @@
 package com.ptrkcsak.stardust_mobil
 
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -70,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     Handler().postDelayed({
                         val intent =
                             Intent(this@LoginActivity, LoginLoadingActivity::class.java)
+                        intent.putExtra("login_email", email);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
