@@ -43,6 +43,7 @@
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
                 android:hint="E-mail Cím"
+                android:text="teszt@gmail.com"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textColorHint="#000000" />
@@ -56,6 +57,7 @@
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
                 android:hint="Jelszó"
+                android:text="jelszo1"
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="#000000"
