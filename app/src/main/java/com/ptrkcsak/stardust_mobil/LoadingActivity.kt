@@ -27,11 +27,11 @@ class LoadingActivity : AppCompatActivity() {
 
     fun splashScreenAnimation() {
         Handler().postDelayed({
-                val intent =
-                        Intent(this@LoadingActivity, LoginActivity::class.java)
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            val intent =
+                Intent(this@LoadingActivity, LoginActivity::class.java)
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
         }, SPLASH_TIME_OUT.toLong())
     }

@@ -1,8 +1,10 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -11,10 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.gson.Gson
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -49,7 +54,6 @@ class LoginActivity : AppCompatActivity() {
             val email = login_email.text.toString()
             val password = login_password.text.toString()
             signin(email, password)
-            println(email+"   "+password)
         }
     }
     private fun signin(email: String, password: String){
@@ -73,9 +77,21 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        val converter = Gson()
+
+                        val token: TokenHelper = converter.fromJson(
+                            response.body()?.string(),
+                            TokenHelper::class.java
+                        )
+                        val sharedPreferences =
+                            getSharedPreferences("Important", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("access_token", token.getToken())
+                        editor.commit()
+
+                        Log.d("token", "access_token: " + token.access_token)
 
                     }, SPLASH_TIME_OUT.toLong());
-                    println(response.code())
                 } else {
                     Toast.makeText(this@LoginActivity, "Login failed!", Toast.LENGTH_SHORT).show()
                 }

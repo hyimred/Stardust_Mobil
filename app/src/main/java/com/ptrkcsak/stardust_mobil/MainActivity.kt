@@ -41,16 +41,9 @@ class MainActivity : AppCompatActivity() {
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
-        val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+        getNotes()
 
-        val recyclerview = findViewById<RecyclerView>(R.id.recycler)
-        recyclerview.layoutManager = LinearLayoutManager(this)
-        val data = ArrayList<ItemsViewModel>()
-        for (i in 1..20) {
-            data.add(ItemsViewModel("Event " + i, "lorem ipsum", "2023.01.01"))
-        }
-        val adapter = CardAdapter(data)
-        recyclerview.adapter = adapter
+        val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
         bottomAppBar.setNavigationOnClickListener {
             navEmail = findViewById(R.id.email)
@@ -93,7 +86,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
-
+    fun getNotes() {
+        val recyclerview = findViewById<RecyclerView>(R.id.recycler)
+        recyclerview.layoutManager = LinearLayoutManager(this)
+        val data = ArrayList<ItemsViewModel>()
+        for (i in 0..20) {
+            data.add(ItemsViewModel("Event " + i, "lorem ipsum", "2023.01.01"))
+        }
+        val adapter = CardAdapter(data)
+        recyclerview.adapter = adapter
+    }
 }
