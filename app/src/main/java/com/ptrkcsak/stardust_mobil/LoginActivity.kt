@@ -14,11 +14,11 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.gson.Gson
+import com.ptrkcsak.stardust_mobil.Constans.USER_TOKEN
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import javax.inject.Inject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -73,7 +73,6 @@ class LoginActivity : AppCompatActivity() {
                     Handler().postDelayed({
                         val intent =
                             Intent(this@LoginActivity, LoginLoadingActivity::class.java)
-                        intent.putExtra("login_email", email);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -89,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString("access_token", token.getToken())
                         editor.commit()
 
-                        Log.d("token", "access_token: " + token.access_token)
+                        USER_TOKEN = token.access_token
 
                     }, SPLASH_TIME_OUT.toLong());
                 } else {

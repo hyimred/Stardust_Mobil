@@ -28,7 +28,6 @@ class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
         // sets the text to the textview from our itemHolder class
         holder.title.text = ItemsViewModel.title
         holder.desc.text = ItemsViewModel.desc
-        holder.date.text = ItemsViewModel.date
 
     }
 
@@ -41,6 +40,5 @@ class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val title: TextView = itemView.findViewById(R.id.title)
         val desc: TextView = itemView.findViewById(R.id.desc)
-        val date: TextView = itemView.findViewById(R.id.date)
     }
 }
