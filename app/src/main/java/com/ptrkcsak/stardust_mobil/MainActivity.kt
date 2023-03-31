@@ -1,6 +1,7 @@
 package com.ptrkcsak.stardust_mobil
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.ptrkcsak.stardust_mobil.*
 import com.ptrkcsak.stardust_mobil.Constans.BASE_URL
+import com.ptrkcsak.stardust_mobil.Constans.USER_TOKEN
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        val token = prefs.getString("access_token", null)
+        USER_TOKEN = token.toString()
 
         val windowInsetsController =
             WindowCompat.getInsetsController(window, window.decorView)
@@ -86,6 +92,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.logout -> {
                     startActivity(Intent(this@MainActivity, LoadingActivity::class.java))
+                    val sharedPreferences =
+                        getSharedPreferences("Important", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("access_token", "")
+                    editor.commit()
                     true
                 }
                 else -> {
