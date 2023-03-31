@@ -1,9 +1,9 @@
 package com.ptrkcsak.stardust_mobil
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.google.gson.annotations.SerializedName
 
 data class User(
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("email") val email: String,
-    @JsonProperty("password") val password: Int
+    @SerializedName("id") val id: Int,
+    @SerializedName("email") val email: String,
+    @SerializedName("password") val password: String,
 )

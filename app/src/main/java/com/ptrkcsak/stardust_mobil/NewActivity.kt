@@ -34,12 +34,12 @@ class NewActivity : AppCompatActivity() {
 
         val submit = findViewById<Button>(R.id.submit)
         submit.setOnClickListener{
-            startActivity(Intent(this@NewActivity,MainActivity::class.java))
+            startActivity(Intent(this@NewActivity, MainActivity::class.java))
         }
 
         val back = findViewById<Button>(R.id.back)
         back.setOnClickListener{
-            startActivity(Intent(this@NewActivity,MainActivity::class.java))
+            startActivity(Intent(this@NewActivity, MainActivity::class.java))
         }
     }
 }

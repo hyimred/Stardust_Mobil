@@ -1,5 +1,6 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.util.Log
 import com.google.gson.annotations.SerializedName
 import com.ptrkcsak.stardust_mobil.Constans.BASE_URL
 import com.ptrkcsak.stardust_mobil.Constans.USER_TOKEN
@@ -19,15 +20,13 @@ interface ApiInterface {
     @Headers("Content-Type:application/json")
     @POST("/auth/login")
     fun signin(@Body info: SignInBody): retrofit2.Call<ResponseBody>
-
     @Headers("Content-Type:application/json")
     @POST("/auth/signup")
     fun registerUser(@Body info: UserBody): retrofit2.Call<ResponseBody>
     @GET("/notes")
     fun getAllNotes(): Call<ArrayList<NoteBody>?>?
     @GET("/profile")
-    fun getProfile(): User
-
+    suspend fun getProfile(): Response<User>
     data class LoginResponse(
         @SerializedName("access_token")
         val token: String
@@ -38,16 +37,6 @@ class RetrofitInstance {
 
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        @Throws(IOException::class)
-        fun intercept(chain: Interceptor.Chain): okhttp3.Response {
-
-            //rewrite the request to add bearer token
-            val newRequest: Request = chain.request().newBuilder()
-                .header("Authorization", "Bearer $USER_TOKEN")
-                .build()
-            return chain.proceed(newRequest)
         }
 
         val client: OkHttpClient = OkHttpClient.Builder().apply {

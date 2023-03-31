@@ -3,9 +3,8 @@ package com.ptrkcsak.stardust_mobil
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
+import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -18,10 +17,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.ptrkcsak.stardust_mobil.*
+import com.ptrkcsak.stardust_mobil.Constans.BASE_URL
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
     private lateinit var navEmail: TextView
+    lateinit var emailText: String
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +48,13 @@ class MainActivity : AppCompatActivity() {
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
         getNotes()
+        getProfile()
 
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
         bottomAppBar.setNavigationOnClickListener {
             navEmail = findViewById(R.id.email)
-            //navEmail.setText(getUsername())
+            navEmail.setText(emailText)
             drawerLayout.openDrawer(navView)
             if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 this.drawerLayout.closeDrawer(GravityCompat.START)
@@ -58,7 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         val btn_new = findViewById<FloatingActionButton>(R.id.btn_new)
         btn_new.setOnClickListener{
-            startActivity(Intent(this@MainActivity,NewActivity::class.java))
+            startActivity(Intent(this@MainActivity, NewActivity::class.java))
         }
 
         drawerLayout = findViewById(R.id.drawerLayout)
@@ -71,15 +77,15 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.profile -> {
-                    startActivity(Intent(this@MainActivity,ProfileActivity::class.java))
+                    startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
                     true
                 }
                 R.id.settings -> {
-                    startActivity(Intent(this@MainActivity,SettingsActivity::class.java))
+                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                     true
                 }
                 R.id.logout -> {
-                    startActivity(Intent(this@MainActivity,LoadingActivity::class.java))
+                    startActivity(Intent(this@MainActivity, LoadingActivity::class.java))
                     true
                 }
                 else -> {
@@ -98,5 +104,31 @@ class MainActivity : AppCompatActivity() {
         val adapter = CardAdapter(data)
         recyclerview.adapter = adapter
     }
+    fun getProfile() {
+        val interceptor = TokenInterceptor()
 
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.getProfile()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    emailText = user?.email.toString()
+                } else {
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+                }
+            }
+        }
+
+    }
 }
