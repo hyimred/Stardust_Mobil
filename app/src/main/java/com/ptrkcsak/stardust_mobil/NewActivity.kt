@@ -1,12 +1,24 @@
 package com.ptrkcsak.stardust_mobil
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
-import java.util.*
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class NewActivity : AppCompatActivity() {
 
@@ -14,32 +26,88 @@ class NewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new)
 
-        val eventDate = findViewById<Button>(R.id.date_picker)
-        val eventDateText = findViewById<TextInputEditText>(R.id.event_date_pick)
-
-        eventDate.setOnClickListener {
-            val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-
-            val datePickerDialog = DatePickerDialog(
-                this,
-                { view, year, monthOfYear, dayOfMonth ->
-                    val dat = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
-                    eventDateText.setText(dat)
-                }, year, month, day)
-            datePickerDialog.show()
-        }
+        val note_text = findViewById<TextInputEditText>(R.id.note_text)
+        val note_name = findViewById<TextInputEditText>(R.id.note_name)
 
         val submit = findViewById<Button>(R.id.submit)
         submit.setOnClickListener{
+            val title = note_name.text.toString()
+            val content = note_text.text.toString()
+            newNote(title, content)
+            startActivity(Intent(this@NewActivity, MainActivity::class.java))
+        }
+
+        val god = findViewById<Button>(R.id.god)
+        god.setOnClickListener{
+            lifecycleScope.launch {
+                whisperGod()
+            }
             startActivity(Intent(this@NewActivity, MainActivity::class.java))
         }
 
         val back = findViewById<Button>(R.id.back)
         back.setOnClickListener{
             startActivity(Intent(this@NewActivity, MainActivity::class.java))
+        }
+    }
+    suspend fun whisperGod() {
+        val interceptor = TokenInterceptor()
+
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(Constans.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
+
+        val response = service.postGod()
+        if (response.isSuccessful) {
+            // Handle successful response
+        } else {
+            // Handle error response
+        }
+    }
+    fun newNote(title: String, content: String) {
+        val interceptor = TokenInterceptor()
+
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(Constans.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("title", title)
+        jsonObject.put("content", content)
+
+        val jsonObjectString = jsonObject.toString()
+        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.postNote(requestBody)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string()
+                        )
+                    )
+                    Log.d("Pretty Printed JSON :", prettyJson)
+                } else {
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+                }
+            }
         }
     }
 }
