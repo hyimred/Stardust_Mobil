@@ -60,9 +60,9 @@
 
         <Button
             android:id="@+id/god"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
-            android:text="Whisper\nwith God"
+            android:text="God Whisp"
             android:backgroundTint="@color/material_dynamic_neutral10"
             android:layout_margin="5dp"
             />
