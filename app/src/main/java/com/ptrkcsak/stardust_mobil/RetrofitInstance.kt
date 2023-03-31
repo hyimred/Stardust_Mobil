@@ -24,7 +24,7 @@ interface ApiInterface {
     @POST("/auth/signup")
     fun registerUser(@Body info: UserBody): retrofit2.Call<ResponseBody>
     @GET("/notes")
-    fun getAllNotes(): Call<ArrayList<NoteBody>?>?
+    suspend fun getAllNotes(): Response<List<NoteBody>>
     @GET("/profile")
     suspend fun getProfile(): Response<User>
     data class LoginResponse(
@@ -34,7 +34,6 @@ interface ApiInterface {
 }
 class RetrofitInstance {
     companion object {
-
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
@@ -49,6 +48,5 @@ class RetrofitInstance {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
-
     }
 }

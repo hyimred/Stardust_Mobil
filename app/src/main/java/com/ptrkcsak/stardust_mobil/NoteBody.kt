@@ -1,8 +1,9 @@
 package com.ptrkcsak.stardust_mobil
 
+import com.google.gson.annotations.SerializedName
+
 data class NoteBody (
-    val noteId: Int,
-    val user: String,
-    val title: String,
-    val content: String
+    @SerializedName("noteId") val noteId: String,
+    @SerializedName("title") val title: String,
+    @SerializedName("content") val content: String
 )

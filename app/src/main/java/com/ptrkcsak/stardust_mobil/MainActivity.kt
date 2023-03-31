@@ -95,14 +95,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun getNotes() {
+        val interceptor = TokenInterceptor()
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
+
         val recyclerview = findViewById<RecyclerView>(R.id.recycler)
         recyclerview.layoutManager = LinearLayoutManager(this)
-        val data = ArrayList<ItemsViewModel>()
-        for (i in 0..20) {
-            data.add(ItemsViewModel("Event " + i, "lorem ipsum", "2023.01.01"))
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.getAllNotes()
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val items = response.body()
+                    if (items != null) {
+                        val data = ArrayList<ItemsViewModel>()
+                        for (i in 0 until items.count()) {
+                            val noteId = items[i].noteId
+                            val title = items[i].title
+                            val content = items[i].content
+                            data.add(ItemsViewModel(title, content))
+                        }
+                        val adapter = CardAdapter(data)
+                        recyclerview.adapter = adapter
+                    }
+                } else {
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+                }
+            }
         }
-        val adapter = CardAdapter(data)
-        recyclerview.adapter = adapter
     }
     fun getProfile() {
         val interceptor = TokenInterceptor()

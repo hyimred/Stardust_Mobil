@@ -89,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
                         editor.commit()
 
                         USER_TOKEN = token.access_token
+                        Log.d("USER_TOKEN", "onResponse: $USER_TOKEN")
 
                     }, SPLASH_TIME_OUT.toLong());
                 } else {
