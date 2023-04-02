@@ -25,6 +25,8 @@ interface ApiInterface {
     suspend fun postNote(@Body requestBody: RequestBody): Response<ResponseBody>
     @GET("/profile")
     suspend fun getProfile(): Response<User>
+    @DELETE("notes/{Id}")
+    suspend fun deleteNote(@Path("Id") noteId: String): Response<ResponseBody>
     data class LoginResponse(
         @SerializedName("access_token")
         val token: String

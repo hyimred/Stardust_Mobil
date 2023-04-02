@@ -5,9 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
 import com.ptrkcsak.stardust_mobil.*
 import com.ptrkcsak.stardust_mobil.Constans.BASE_URL
 import com.ptrkcsak.stardust_mobil.Constans.USER_TOKEN
@@ -28,8 +33,6 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-
 class MainActivity : AppCompatActivity() {
 
     private var recyclerView: RecyclerView? = null
@@ -131,11 +134,47 @@ class MainActivity : AppCompatActivity() {
                             val noteId = items[i].noteId
                             val title = items[i].title
                             val content = items[i].content
-                            data.add(ItemsViewModel(title, content))
+
+                            data.add(ItemsViewModel(title, content, noteId))
+                            Log.d("noteID 1", noteId)
                         }
                         val adapter = CardAdapter(data)
                         recyclerview.adapter = adapter
                     }
+                } else {
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+                }
+            }
+        }
+    }
+    fun deleteNote(noteId: String) {
+        val interceptor = TokenInterceptor()
+
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(Constans.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            val response = service.deleteNote(noteId)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string()
+                        )
+                    )
+                    Log.d("Pretty Printed JSON :", prettyJson)
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
