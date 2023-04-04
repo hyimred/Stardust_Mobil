@@ -1,6 +1,5 @@
 package com.ptrkcsak.stardust_mobil
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.rv_one, parent, false)
-
         return ViewHolder(view)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -33,7 +31,6 @@ class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
             val activity = MainActivity()
             val noteId = holder.deleteNote.getTag().toString()
             activity.deleteNote(noteId)
-            Log.d("noteID Final", noteId)
         }
     }
     override fun getItemCount(): Int {
@@ -46,4 +43,5 @@ class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
         val exportNote: Button = itemView.findViewById(R.id.exportNote)
         val deleteNote: Button = itemView.findViewById(R.id.deleteNote)
     }
+
 }

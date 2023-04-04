@@ -4,13 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
-import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,6 +17,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -35,12 +35,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
-    private var recyclerView: RecyclerView? = null
+    private lateinit var recyclerView: RecyclerView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
     private lateinit var navEmail: TextView
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var emailText: String
+
+    val SPLASH_TIME_OUT = 1000;
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,6 +110,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        swipeRefreshLayout = findViewById(R.id.swiperefresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            Handler().postDelayed({
+                recreate()
+                swipeRefreshLayout.isRefreshing = false
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }, SPLASH_TIME_OUT.toLong())
+        }
+
+        recyclerView = findViewById(R.id.recycler)
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     fun getNotes() {
         val interceptor = TokenInterceptor()
@@ -120,9 +134,6 @@ class MainActivity : AppCompatActivity() {
             .build()
         val service = retrofit.create(ApiInterface::class.java)
 
-        val recyclerview = findViewById<RecyclerView>(R.id.recycler)
-        recyclerview.layoutManager = LinearLayoutManager(this)
-
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.getAllNotes()
             withContext(Dispatchers.Main) {
@@ -134,12 +145,13 @@ class MainActivity : AppCompatActivity() {
                             val noteId = items[i].noteId
                             val title = items[i].title
                             val content = items[i].content
+                            val position = i
 
                             data.add(ItemsViewModel(title, content, noteId))
                             Log.d("noteID 1", noteId)
                         }
                         val adapter = CardAdapter(data)
-                        recyclerview.adapter = adapter
+                        recyclerView.adapter = adapter
                     }
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())

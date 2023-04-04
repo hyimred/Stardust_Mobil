@@ -4,7 +4,7 @@
     android:id="@+id/layout_root_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_neutral10"
+    android:background="#191C1E"
     tools:context=".LoginActivity">
 
     <LinearLayout
@@ -67,26 +67,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/play_bold"
-                    android:text="Maradjak bejelentkezve"
-                    android:textColor="#000000"
-                    android:textSize="15dp" />
-
-                <CheckBox
-                    android:id="@+id/login_keep"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp">
 
@@ -98,7 +78,7 @@
                     android:textColor="#000000"
                     android:textSize="15dp" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <Button
                     android:id="@+id/btn_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,15 +87,14 @@
                     android:paddingLeft="5dp"
                     android:text="Regisztrálj itt"
                     android:textAllCaps="false"
-                    android:textColor="@color/material_dynamic_neutral10" />
+                    android:textColor="#191C1E" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_login_ui"
-                android:backgroundTint="@color/material_dynamic_neutral10"
+                android:backgroundTint="#191C1E"
                 android:fontFamily="@font/play_bold"
                 android:paddingHorizontal="20dp"
                 android:text="Jelentkezz be"

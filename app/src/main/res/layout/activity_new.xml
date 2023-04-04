@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewActivity"
+    android:background="#191C1E"
     android:padding="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -15,12 +16,16 @@
         android:id="@+id/note_name_field"
         app:endIconMode="clear_text"
         android:hint="Jegyzet neve"
+        android:textColorHint="#808080"
+        app:boxStrokeColor="#808080"
+        app:endIconTint="#FFF"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:paddingBottom="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FFF"
             android:id="@+id/note_name"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -31,6 +36,9 @@
         android:layout_height="wrap_content"
         app:endIconMode="clear_text"
         android:hint="Jegyzet tartalma"
+        android:textColorHint="#808080"
+        app:boxStrokeColor="#808080"
+        app:endIconTint="#FFF"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_below="@+id/note_name_field"
         android:paddingBottom="10dp">
@@ -38,6 +46,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FFF"
             android:id="@+id/note_text"
             android:minHeight="200dp"/>
 
@@ -54,7 +63,7 @@
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="Back"
-            android:backgroundTint="@color/material_dynamic_neutral10"
+            android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />
 
@@ -63,7 +72,7 @@
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="God Whisp"
-            android:backgroundTint="@color/material_dynamic_neutral10"
+            android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />
 
@@ -72,7 +81,7 @@
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="Submit"
-            android:backgroundTint="@color/material_dynamic_neutral10"
+            android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />
 

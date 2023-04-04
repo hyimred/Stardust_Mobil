@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_root_loading"
     tools:context=".LoginLoadingActivity"
-    android:background="@color/material_dynamic_neutral10">
+    android:background="#191C1E">
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="wrap_content"
