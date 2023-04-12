@@ -103,7 +103,7 @@ class NewActivity : AppCompatActivity() {
                                 ?.string()
                         )
                     )
-                    Log.d("Pretty Printed JSON :", prettyJson)
+                    Log.d("retrofit ok :", prettyJson)
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }

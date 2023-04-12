@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.app.ActivityCompat.recreate
 import androidx.recyclerview.widget.RecyclerView
-import com.ptrkcsak.stardust_mobil.Constans.EDITED_NOTE
 
 class CardAdapter(private val mList: List<ItemsViewModel>, private val context: Context) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,12 +21,13 @@ class CardAdapter(private val mList: List<ItemsViewModel>, private val context: 
 
         holder.title.text = ItemsViewModel.title
         holder.desc.text = ItemsViewModel.desc
+        holder.editNote.tag = ItemsViewModel.noteId
         holder.exportNote.tag = ItemsViewModel.noteId
         holder.deleteNote.tag = ItemsViewModel.noteId
         Log.d("noteID CardAdapter", holder.deleteNote.tag.toString())
         holder.editNote.setOnClickListener{
-            EDITED_NOTE = ItemsViewModel.noteId
             val intent = Intent(context, EditNoteActivity::class.java)
+            intent.putExtra("noteId", holder.editNote.tag as String)
             context.startActivity(intent)
         }
         holder.exportNote.setOnClickListener{

@@ -19,6 +19,8 @@ interface ApiInterface {
     fun registerUser(@Body info: UserBody): retrofit2.Call<ResponseBody>
     @GET("/notes")
     suspend fun getAllNotes(): Response<List<NoteBody>>
+    @GET("/notes/{Id}")
+    suspend fun getNote(@Path("Id") noteId: String): Response<NoteBody>
     @POST("/notes/god")
     suspend fun postGod(): Response<Unit>
     @POST("/notes")
@@ -29,6 +31,7 @@ interface ApiInterface {
     suspend fun deleteNote(@Path("Id") noteId: String): Response<ResponseBody>
     @PATCH("notes/{Id}")
     suspend fun editNote(@Path("Id") noteId: String, @Body requestBody: RequestBody): Response<ResponseBody>
+
     data class LoginResponse(
         @SerializedName("access_token")
         val token: String

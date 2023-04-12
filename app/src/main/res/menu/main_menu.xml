@@ -3,26 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group>
         <item
-            android:id="@+id/view"
-            android:icon="@drawable/baseline_today"
-            android:title="Naptár nézet"
-            app:showAsAction="always"/>
-
-        <item
-            android:id="@+id/tags"
-            android:icon="@drawable/baseline_tag"
-            android:title="Tagek"
-            app:showAsAction="always"/>
-
-        <item
-            android:id="@+id/filter"
-            android:icon="@drawable/baseline_filter"
-            android:title="Szűrés"
-            app:showAsAction="always"/>
-    </group>
-
-    <group>
-        <item
             android:id="@+id/profile"
             android:icon="@drawable/baseline_account_circle"
             android:title="Profil"
