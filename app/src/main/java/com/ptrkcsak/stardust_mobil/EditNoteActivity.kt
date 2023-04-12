@@ -21,8 +21,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class EditNoteActivity : AppCompatActivity() {
-    lateinit var editTitle: String
-    lateinit var editContent: String
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

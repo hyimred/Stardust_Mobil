@@ -145,7 +145,6 @@ class MainActivity : AppCompatActivity() {
                             val noteId = items[i].noteId
                             val title = items[i].title
                             val content = items[i].content
-                            val position = i
 
                             data.add(ItemsViewModel(title, content, noteId))
                             Log.d("noteID 1", noteId)
