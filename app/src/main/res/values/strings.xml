@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stardust_Mobil</string>
+    <string name="app_name">Stardust Notepad</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
