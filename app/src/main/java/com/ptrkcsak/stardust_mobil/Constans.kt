@@ -1,5 +1,6 @@
 package com.ptrkcsak.stardust_mobil
 object Constans {
-        const val BASE_URL = "http://192.168.1.100:3000"
+        const val BASE_URL = "http://10.4.23.3:3000"
         var USER_TOKEN = "user_token"
+        var EDITED_NOTE = ""
     }

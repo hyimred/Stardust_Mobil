@@ -27,6 +27,8 @@ interface ApiInterface {
     suspend fun getProfile(): Response<User>
     @DELETE("notes/{Id}")
     suspend fun deleteNote(@Path("Id") noteId: String): Response<ResponseBody>
+    @PATCH("notes/{Id}")
+    suspend fun editNote(@Path("Id") noteId: String, @Body requestBody: RequestBody): Response<ResponseBody>
     data class LoginResponse(
         @SerializedName("access_token")
         val token: String

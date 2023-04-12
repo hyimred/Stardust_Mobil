@@ -1,14 +1,18 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.app.ActivityCompat.recreate
 import androidx.recyclerview.widget.RecyclerView
+import com.ptrkcsak.stardust_mobil.Constans.EDITED_NOTE
 
-class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+class CardAdapter(private val mList: List<ItemsViewModel>, private val context: Context) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.rv_one, parent, false)
@@ -19,18 +23,23 @@ class CardAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
 
         holder.title.text = ItemsViewModel.title
         holder.desc.text = ItemsViewModel.desc
-        holder.editNote.tag = ItemsViewModel.noteId
         holder.exportNote.tag = ItemsViewModel.noteId
         holder.deleteNote.tag = ItemsViewModel.noteId
         Log.d("noteID CardAdapter", holder.deleteNote.tag.toString())
         holder.editNote.setOnClickListener{
+            EDITED_NOTE = ItemsViewModel.noteId
+            val intent = Intent(context, EditNoteActivity::class.java)
+            context.startActivity(intent)
         }
         holder.exportNote.setOnClickListener{
         }
         holder.deleteNote.setOnClickListener{
             val activity = MainActivity()
-            val noteId = holder.deleteNote.getTag().toString()
+            val noteId = holder.deleteNote.tag.toString()
             activity.deleteNote(noteId)
+
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
         }
     }
     override fun getItemCount(): Int {

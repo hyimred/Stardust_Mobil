@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                             data.add(ItemsViewModel(title, content, noteId))
                             Log.d("noteID 1", noteId)
                         }
-                        val adapter = CardAdapter(data)
+                        val adapter = CardAdapter(data, this@MainActivity)
                         recyclerView.adapter = adapter
                     }
                 } else {
