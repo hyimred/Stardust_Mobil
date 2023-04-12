@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
@@ -33,8 +34,12 @@ class NewActivity : AppCompatActivity() {
         submit.setOnClickListener{
             val title = note_name.text.toString()
             val content = note_text.text.toString()
-            newNote(title, content)
-            startActivity(Intent(this@NewActivity, MainActivity::class.java))
+            if (title == "" || content == "") {
+                Toast.makeText(this@NewActivity, "Egyik mező sem lehet üres!", Toast.LENGTH_SHORT).show()
+            } else {
+                newNote(title, content)
+                startActivity(Intent(this@NewActivity, MainActivity::class.java))
+            }
         }
 
         val god = findViewById<Button>(R.id.god)
