@@ -14,14 +14,9 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import com.ptrkcsak.stardust_mobil.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,6 +24,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
@@ -63,8 +59,6 @@ class ProfileActivity : AppCompatActivity() {
         getNotes()
         getProfile()
 
-
-
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
         bottomAppBar.setNavigationOnClickListener {
@@ -86,12 +80,12 @@ class ProfileActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.profile -> {
-                    startActivity(Intent(this@ProfileActivity, ProfileActivity::class.java))
+                R.id.home -> {
+                    startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
                     true
                 }
                 R.id.settings -> {
-                    startActivity(Intent(this@ProfileActivity, SettingsActivity::class.java))
+                    startActivity(Intent(this@ProfileActivity, ProfileActivity::class.java))
                     true
                 }
                 R.id.logout -> {
@@ -165,6 +159,11 @@ class ProfileActivity : AppCompatActivity() {
                     val user = response.body()
                     emailText = user?.email.toString()
                     navEmailMain.text = emailText
+
+                    val formatter = SimpleDateFormat("yyyy.\nMMMM dd.")
+                    val formattedDate = formatter.format(user?.registartionDate)
+
+                    registerDate.text = formattedDate
                     Log.d("REGISTER DATE", user.toString())
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
@@ -174,3 +173,4 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 }
+

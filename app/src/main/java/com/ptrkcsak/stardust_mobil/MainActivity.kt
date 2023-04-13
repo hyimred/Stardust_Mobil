@@ -88,12 +88,12 @@ class MainActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.profile -> {
-                    startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
+                R.id.home -> {
+                    startActivity(Intent(this@MainActivity, MainActivity::class.java))
                     true
                 }
                 R.id.settings -> {
-                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+                    startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
                     true
                 }
                 R.id.logout -> {

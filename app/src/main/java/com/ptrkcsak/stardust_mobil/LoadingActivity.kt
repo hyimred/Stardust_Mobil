@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -43,6 +44,7 @@ class LoadingActivity : AppCompatActivity() {
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                Log.d("USERTOKEN", token)
             }
         }, SPLASH_TIME_OUT.toLong())
     }

@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group>
         <item
-            android:id="@+id/profile"
-            android:icon="@drawable/baseline_account_circle"
-            android:title="Profil"
+            android:id="@+id/home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Főoldal"
             app:showAsAction="always"/>
 
         <item
