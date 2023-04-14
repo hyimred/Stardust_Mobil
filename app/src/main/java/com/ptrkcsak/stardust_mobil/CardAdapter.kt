@@ -31,6 +31,9 @@ class CardAdapter(private val mList: List<ItemsViewModel>, private val context: 
             context.startActivity(intent)
         }
         holder.exportNote.setOnClickListener{
+            val intent = Intent(context, ExportNoteActivity::class.java)
+            intent.putExtra("noteId", holder.exportNote.tag as String)
+            context.startActivity(intent)
         }
         holder.deleteNote.setOnClickListener{
             val activity = MainActivity()

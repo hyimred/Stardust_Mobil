@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -15,6 +16,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -33,6 +35,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -75,8 +78,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         val btn_new = findViewById<FloatingActionButton>(R.id.btn_new)
+        val popupMenu = PopupMenu(this, btn_new)
+        popupMenu.inflate(R.menu.menu_new)
+
         btn_new.setOnClickListener{
-            startActivity(Intent(this@MainActivity, NewActivity::class.java))
+            popupMenu.show()
+        }
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.new_note -> {
+                    startActivity(Intent(this@MainActivity, NewActivity::class.java))
+                    true
+                }
+                R.id.new_god -> {
+                    lifecycleScope.launch {
+                        whisperGod()
+                    }
+                    true
+                }
+                R.id.new_qr -> {
+                    startActivity(Intent(this@MainActivity, NewByQrActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
 
         drawerLayout = findViewById(R.id.drawerLayout)
@@ -121,6 +147,28 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+    suspend fun whisperGod() {
+        val interceptor = TokenInterceptor()
+
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
+
+        val response = service.postGod()
+        if (response.isSuccessful) {
+            recreate()
+            Toast.makeText(this@MainActivity, "Sikeres Generálás!", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this@MainActivity, "Sikertelen Generálás!", Toast.LENGTH_SHORT).show()
+        }
     }
     fun getNotes() {
         val interceptor = TokenInterceptor()
@@ -167,7 +215,7 @@ class MainActivity : AppCompatActivity() {
 
         val retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl(Constans.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiInterface::class.java)
@@ -187,7 +235,6 @@ class MainActivity : AppCompatActivity() {
                     )
                     Log.d("Pretty Printed JSON :", prettyJson)
                 } else {
-                    Log.e("RETROFIT_ERROR", response.code().toString())
                 }
             }
         }

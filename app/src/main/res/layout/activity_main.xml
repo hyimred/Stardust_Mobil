@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#B2FFFFFF"
             android:contentDescription="FAB"
+            app:menu="@menu/menu_new"
             app:layout_anchor="@id/bottomAppBar"
             app:srcCompat="@drawable/baseline_add_42" />
 

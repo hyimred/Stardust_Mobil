@@ -68,15 +68,6 @@
             />
 
         <Button
-            android:id="@+id/god"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:text="God Whisp"
-            android:backgroundTint="#3E4347"
-            android:layout_margin="5dp"
-            />
-
-        <Button
             android:id="@+id/submit"
             android:layout_width="100dp"
             android:layout_height="70dp"

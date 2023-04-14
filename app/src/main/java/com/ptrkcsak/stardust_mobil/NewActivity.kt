@@ -3,10 +3,8 @@ package com.ptrkcsak.stardust_mobil
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -42,61 +40,27 @@ class NewActivity : AppCompatActivity() {
             }
         }
 
-        val god = findViewById<Button>(R.id.god)
-        god.setOnClickListener{
-            lifecycleScope.launch {
-                whisperGod()
-            }
-            startActivity(Intent(this@NewActivity, MainActivity::class.java))
-        }
-
         val back = findViewById<Button>(R.id.back)
         back.setOnClickListener{
             startActivity(Intent(this@NewActivity, MainActivity::class.java))
         }
     }
-    suspend fun whisperGod() {
-        val interceptor = TokenInterceptor()
-
-        val client: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .client(client)
-            .baseUrl(Constans.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val service = retrofit.create(ApiInterface::class.java)
-
-        val response = service.postGod()
-        if (response.isSuccessful) {
-            // Handle successful response
-        } else {
-            // Handle error response
-        }
-    }
     fun newNote(title: String, content: String) {
         val interceptor = TokenInterceptor()
-
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
-
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(Constans.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiInterface::class.java)
-
         val jsonObject = JSONObject()
         jsonObject.put("title", title)
         jsonObject.put("content", content)
-
         val jsonObjectString = jsonObject.toString()
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
-
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.postNote(requestBody)
             withContext(Dispatchers.Main) {
@@ -108,9 +72,9 @@ class NewActivity : AppCompatActivity() {
                                 ?.string()
                         )
                     )
-                    Log.d("retrofit ok :", prettyJson)
+                    Toast.makeText(this@NewActivity, "Sikeres Létrehozás!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Log.e("RETROFIT_ERROR", response.code().toString())
+                    Toast.makeText(this@NewActivity, "Sikertelen Törlés! ERROR: "+response.code().toString(), Toast.LENGTH_SHORT).show()
                 }
             }
         }

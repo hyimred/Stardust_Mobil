@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/new_note"
+            android:title="Új Jegyzet"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/new_god"
+            android:title="Jegyzet Generálás"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/new_qr"
+            android:title="QR Beolvasása"
+            app:showAsAction="always"/>
+    </group>
+
+</menu>
