@@ -33,6 +33,14 @@
             android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />
+        <Button
+            android:id="@+id/share"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:text="Share"
+            android:backgroundTint="#3E4347"
+            android:layout_margin="5dp"
+            />
 
     </LinearLayout>
 
