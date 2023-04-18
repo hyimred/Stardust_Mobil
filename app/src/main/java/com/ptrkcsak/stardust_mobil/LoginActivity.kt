@@ -1,19 +1,23 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.gson.Gson
+import com.ptrkcsak.stardust_mobil.Constans.BASE_URL
 import com.ptrkcsak.stardust_mobil.Constans.USER_TOKEN
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -24,6 +28,7 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
 
     val SPLASH_TIME_OUT = 1;
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -54,6 +59,23 @@ class LoginActivity : AppCompatActivity() {
             val email = login_email.text.toString()
             val password = login_password.text.toString()
             signin(email, password)
+        }
+
+        val setIP = findViewById<Button>(R.id.setIP)
+        setIP.setOnClickListener{
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.set_ip, null)
+            val editText = dialogView.findViewById<EditText>(R.id.edit_text)
+            val okButton = dialogView.findViewById<Button>(R.id.ok_button)
+
+            val dialog = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create()
+
+            okButton.setOnClickListener {
+                BASE_URL = editText.text.toString()
+                dialog.dismiss()
+            }
+            dialog.show()
         }
     }
     private fun signin(email: String, password: String){
