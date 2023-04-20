@@ -5,13 +5,33 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/baseline_home_24"
-            android:title="Főoldal"
+            android:title="Main"
             app:showAsAction="always"/>
 
         <item
             android:id="@+id/settings"
             android:icon="@drawable/baseline_settings"
-            android:title="Beállítások"
+            android:title="Settings"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/archive"
+            android:icon="@drawable/baseline_archive_24"
+            android:title="Archive"
+            app:showAsAction="always"/>
+
+        <item
+            android:id="@+id/bin"
+            android:icon="@drawable/baseline_settings"
+            android:title="Bin"
+            app:showAsAction="always"/>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/devlog"
+            android:icon="@drawable/baseline_developer_mode_24"
+            android:title="Console Log"
             app:showAsAction="always"/>
     </group>
 
@@ -19,7 +39,7 @@
         <item
             android:id="@+id/logout"
             android:icon="@drawable/baseline_logout"
-            android:title="Kijelentkezés"
+            android:title="Logout"
             app:showAsAction="always"/>
     </group>
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -50,6 +51,7 @@ class EditNoteActivity : AppCompatActivity() {
                     if (item != null) {
                         note_text.setText(item.content)
                         note_name.setText(item.title)
+                        Toast.makeText(this@EditNoteActivity, "Update Successful!", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())

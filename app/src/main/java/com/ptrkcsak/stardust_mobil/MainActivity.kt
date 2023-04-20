@@ -3,12 +3,17 @@ package com.ptrkcsak.stardust_mobil
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.MenuInflater
+import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -47,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var emailText: String
 
     val SPLASH_TIME_OUT = 1000;
+    @RequiresApi(Build.VERSION_CODES.Q)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,14 +84,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         val btn_new = findViewById<FloatingActionButton>(R.id.btn_new)
-        val popupMenu = PopupMenu(this, btn_new)
-        popupMenu.inflate(R.menu.menu_new)
+        val popup = PopupMenu(this, btn_new)
+        popup.menuInflater.inflate(R.menu.menu_new, popup.menu)
 
         btn_new.setOnClickListener{
-            popupMenu.show()
+            popup.show()
         }
 
-        popupMenu.setOnMenuItemClickListener { menuItem ->
+        popup.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.new_note -> {
                     startActivity(Intent(this@MainActivity, NewActivity::class.java))
@@ -120,6 +126,15 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.settings -> {
                     startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
+                    true
+                }
+                R.id.archive -> {
+                    true
+                }
+                R.id.bin -> {
+                    true
+                }
+                R.id.devlog -> {
                     true
                 }
                 R.id.logout -> {
@@ -165,9 +180,9 @@ class MainActivity : AppCompatActivity() {
         val response = service.postGod()
         if (response.isSuccessful) {
             recreate()
-            Toast.makeText(this@MainActivity, "Sikeres Generálás!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "The words of God have reached you successfully!", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this@MainActivity, "Sikertelen Generálás!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "The words of God can't reach you! You dirty disbeliever!", Toast.LENGTH_SHORT).show()
         }
     }
     fun getNotes() {
@@ -193,8 +208,14 @@ class MainActivity : AppCompatActivity() {
                             val noteId = items[i].noteId
                             val title = items[i].title
                             val content = items[i].content
+                            val isArchived = items[i].isArchived
+                            val dateArchived = items[i].dateArchived
+                            val isDeleted = items[i].isDeleted
+                            val dateDeleted = items[i].dateDeleted
+                            val dateCreated = items[i].dateCreated
+                            val dateUpdated = items[i].dateUpdated
 
-                            data.add(ItemsViewModel(title, content, noteId))
+                            data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateDeleted, isArchived, isDeleted))
                             Log.d("noteID 1", noteId)
                         }
                         val adapter = CardAdapter(data, this@MainActivity)

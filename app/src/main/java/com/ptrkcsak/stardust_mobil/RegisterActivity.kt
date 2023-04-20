@@ -61,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 }, SPLASH_TIME_OUT.toLong());
                 signup(email, pwd)
-            } else {Toast.makeText(this@RegisterActivity, "A két jelszó különbözik!", Toast.LENGTH_SHORT)
+            } else {Toast.makeText(this@RegisterActivity, "The two password are different!", Toast.LENGTH_SHORT)
                 .show()
             }
         }

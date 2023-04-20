@@ -24,6 +24,7 @@ class CardAdapter(private val mList: List<ItemsViewModel>, private val context: 
         holder.editNote.tag = ItemsViewModel.noteId
         holder.exportNote.tag = ItemsViewModel.noteId
         holder.deleteNote.tag = ItemsViewModel.noteId
+
         Log.d("noteID CardAdapter", holder.deleteNote.tag.toString())
         holder.editNote.setOnClickListener{
             val intent = Intent(context, EditNoteActivity::class.java)

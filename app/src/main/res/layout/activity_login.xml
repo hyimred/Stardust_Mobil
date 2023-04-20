@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/play_bold"
                 android:paddingBottom="30dp"
-                android:text="Belépés"
+                android:text="Login"
                 android:textColor="#000000"
                 android:textSize="25dp" />
 
@@ -43,8 +43,8 @@
                 android:background="@drawable/rounded_login_ui"
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
-                android:hint="E-mail Cím"
-                android:text="teszt@gmail.com"
+                android:hint="E-mail Address"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textColorHint="#000000" />
@@ -57,8 +57,8 @@
                 android:background="@drawable/rounded_login_ui"
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
-                android:hint="Jelszó"
-                android:text="jelszo1"
+                android:hint="Password"
+                android:text=""
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -68,14 +68,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/play_bold"
-                    android:text="Még nincs fiókod?"
+                    android:text="You don't have an account?"
                     android:textColor="#000000"
                     android:textSize="15dp" />
 
@@ -85,8 +85,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:fontFamily="@font/play_bold"
-                    android:paddingLeft="5dp"
-                    android:text="Regisztrálj itt"
+                    android:text="Register here"
                     android:textAllCaps="false"
                     android:textColor="#191C1E" />
             </LinearLayout>
@@ -98,7 +97,7 @@
                 android:backgroundTint="#191C1E"
                 android:fontFamily="@font/play_bold"
                 android:paddingHorizontal="20dp"
-                android:text="Jelentkezz be"
+                android:text="Login"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
 

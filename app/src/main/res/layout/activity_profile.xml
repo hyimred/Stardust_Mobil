@@ -68,7 +68,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:padding="25dp"
-                            android:text="Összes jegyzet:"
+                            android:text="Number of Notes:"
                             android:textSize="15sp" />
 
                         <TextView
@@ -78,7 +78,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:padding="25dp"
-                            android:text="jegyzetek_szama"
+                            android:text="note_number"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -94,7 +94,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:padding="22dp"
-                            android:text="Regisztráció:"
+                            android:text="Registration Date:"
                             android:textSize="15sp" />
 
 
@@ -105,7 +105,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:padding="25dp"
-                            android:text="regisztracio_datum"
+                            android:text="reg_date"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -121,7 +121,7 @@
                             android:layout_weight="1"
                             android:layout_gravity="center"
                             android:padding="5dp"
-                            android:text="Email cím megváltoztatása"
+                            android:text="Change Email Address"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
                             android:textSize="15sp" />
 
@@ -133,7 +133,7 @@
                             android:layout_weight="1"
                             android:layout_gravity="center"
                             android:padding="5dp"
-                            android:text="Jelszó megváltoztatása"
+                            android:text="Change Password"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
                             android:textSize="15sp" />
                     </LinearLayout>

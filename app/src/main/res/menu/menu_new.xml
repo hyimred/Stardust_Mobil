@@ -4,17 +4,20 @@
     <group>
         <item
             android:id="@+id/new_note"
-            android:title="Új Jegyzet"
+            android:title="New Note"
+            android:icon="@drawable/baseline_add_42"
             app:showAsAction="always"/>
 
         <item
             android:id="@+id/new_god"
-            android:title="Jegyzet Generálás"
+            android:title="Talk with God"
+            android:icon="@drawable/jesus_christ_svgrepo_com"
             app:showAsAction="always"/>
 
         <item
             android:id="@+id/new_qr"
-            android:title="QR Beolvasása"
+            android:title="New with QR"
+            android:icon="@drawable/baseline_qr_code_24"
             app:showAsAction="always"/>
     </group>
 

@@ -71,6 +71,8 @@ class LoginActivity : AppCompatActivity() {
                 .setView(dialogView)
                 .create()
 
+            editText.setText(BASE_URL)
+
             okButton.setOnClickListener {
                 BASE_URL = editText.text.toString()
                 dialog.dismiss()

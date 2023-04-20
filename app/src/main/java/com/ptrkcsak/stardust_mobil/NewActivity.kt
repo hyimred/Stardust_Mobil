@@ -33,7 +33,7 @@ class NewActivity : AppCompatActivity() {
             val title = note_name.text.toString()
             val content = note_text.text.toString()
             if (title == "" || content == "") {
-                Toast.makeText(this@NewActivity, "Egyik mező sem lehet üres!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@NewActivity, "The title and the content musn't be empty!", Toast.LENGTH_SHORT).show()
             } else {
                 newNote(title, content)
                 startActivity(Intent(this@NewActivity, MainActivity::class.java))
@@ -72,9 +72,9 @@ class NewActivity : AppCompatActivity() {
                                 ?.string()
                         )
                     )
-                    Toast.makeText(this@NewActivity, "Sikeres Létrehozás!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@NewActivity, "Create Successful!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@NewActivity, "Sikertelen Törlés! ERROR: "+response.code().toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@NewActivity, "Create Error! ERROR: "+response.code().toString(), Toast.LENGTH_SHORT).show()
                 }
             }
         }
