@@ -51,7 +51,6 @@ class EditNoteActivity : AppCompatActivity() {
                     if (item != null) {
                         note_text.setText(item.content)
                         note_name.setText(item.title)
-                        Toast.makeText(this@EditNoteActivity, "Update Successful!", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
@@ -105,7 +104,7 @@ class EditNoteActivity : AppCompatActivity() {
                                 ?.string()
                         )
                     )
-                    Log.d("retrofit ok :", prettyJson)
+                    Toast.makeText(this@EditNoteActivity, "Update Successful!", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }

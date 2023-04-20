@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:id="@+id/card_view"
+        android:backgroundTint="#A8464B50"
+        app:cardCornerRadius="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="26dp">
+
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:id="@+id/title"
+                        android:textSize="30dp"
+                        android:text="ddd"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="15dp"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:id="@+id/desc"
+                        android:text="ddd"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:gravity="left">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/editNote"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:foreground="@drawable/baseline_edit_24"
+                        android:foregroundTint="@color/white"
+                        android:tag="noteID"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/exportNote"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:foreground="@drawable/baseline_qr_code_24"
+                        android:foregroundTint="@color/white"
+                        android:tag="noteID"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/archiveNote"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:foreground="@drawable/baseline_archive_24"
+                        android:foregroundTint="@color/white"
+                        android:tag="noteID"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/deleteNote"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="12dp"
+                        android:foreground="@drawable/baseline_delete_24"
+                        android:foregroundTint="@color/white"
+                        android:tag="noteID" />
+                </LinearLayout>
+
+    </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -7,9 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MenuInflater
-import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
@@ -129,9 +126,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.archive -> {
+                    startActivity(Intent(this@MainActivity, ArchiveActivity::class.java))
                     true
                 }
                 R.id.bin -> {
+                    startActivity(Intent(this@MainActivity, BinActivity::class.java))
                     true
                 }
                 R.id.devlog -> {
@@ -143,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                         getSharedPreferences("Important", Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     editor.putString("access_token", "")
-                    editor.commit()
+                    editor.apply()
                     true
                 }
                 else -> {
@@ -163,20 +162,17 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
-    suspend fun whisperGod() {
+    private suspend fun whisperGod() {
         val interceptor = TokenInterceptor()
-
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
-
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiInterface::class.java)
-
         val response = service.postGod()
         if (response.isSuccessful) {
             recreate()
@@ -185,7 +181,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "The words of God can't reach you! You dirty disbeliever!", Toast.LENGTH_SHORT).show()
         }
     }
-    fun getNotes() {
+    private fun getNotes() {
+
         val interceptor = TokenInterceptor()
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -196,7 +193,6 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiInterface::class.java)
-
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.getAllNotes()
             withContext(Dispatchers.Main) {
@@ -214,11 +210,11 @@ class MainActivity : AppCompatActivity() {
                             val dateDeleted = items[i].dateDeleted
                             val dateCreated = items[i].dateCreated
                             val dateUpdated = items[i].dateUpdated
-
-                            data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateDeleted, isArchived, isDeleted))
-                            Log.d("noteID 1", noteId)
+                            if(!items[i].isArchived && !items[i].isDeleted){
+                                data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateDeleted, isArchived, isDeleted))
+                            }
                         }
-                        val adapter = CardAdapter(data, this@MainActivity)
+                        val adapter = MainCardAdapter(data, this@MainActivity)
                         recyclerView.adapter = adapter
                     }
                 } else {
@@ -227,26 +223,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    fun deleteNote(noteId: String) {
+    fun binNote(noteId: String) {
         val interceptor = TokenInterceptor()
-
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
-
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiInterface::class.java)
-
         CoroutineScope(Dispatchers.IO).launch {
-
-            val response = service.deleteNote(noteId)
+            val response = service.binNote(noteId)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     val prettyJson = gson.toJson(
                         JsonParser.parseString(
@@ -254,37 +245,55 @@ class MainActivity : AppCompatActivity() {
                                 ?.string()
                         )
                     )
-                    Log.d("Pretty Printed JSON :", prettyJson)
-                } else {
                 }
             }
         }
     }
-    fun getProfile() {
+    fun archiveNote(noteId: String) {
         val interceptor = TokenInterceptor()
-
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
-
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(ApiInterface::class.java)
-
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.archiveNote(noteId)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string()
+                        )
+                    )
+                }
+            }
+        }
+    }
+    private fun getProfile() {
+        val interceptor = TokenInterceptor()
+        val client: OkHttpClient = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+        val retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val service = retrofit.create(ApiInterface::class.java)
         CoroutineScope(Dispatchers.IO).launch {
             val response = service.getProfile()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val user = response.body()
                     emailText = user?.email.toString()
-                } else {
-                    Log.e("RETROFIT_ERROR", response.code().toString())
                 }
             }
         }
-
     }
 }

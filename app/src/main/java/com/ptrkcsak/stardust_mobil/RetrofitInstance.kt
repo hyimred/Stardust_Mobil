@@ -27,15 +27,18 @@ interface ApiInterface {
     suspend fun postNote(@Body requestBody: RequestBody): Response<ResponseBody>
     @GET("/profile")
     suspend fun getProfile(): Response<User>
-    @DELETE("notes/{Id}")
+    @DELETE("/notes/{Id}")
     suspend fun deleteNote(@Path("Id") noteId: String): Response<ResponseBody>
-    @PATCH("notes/{Id}")
+    @PATCH("/notes/bin/{Id}")
+    suspend fun binNote(@Path("Id") noteId: String): Response<ResponseBody>
+    @PATCH("/notes/unbin/{Id}")
+    suspend fun unbinNote(@Path("Id") noteId: String): Response<ResponseBody>
+    @PATCH("/notes/archive/{Id}")
+    suspend fun archiveNote(@Path("Id") noteId: String): Response<ResponseBody>
+    @PATCH("/notes/unarchive/{Id}")
+    suspend fun unarchiveNote(@Path("Id") noteId: String): Response<ResponseBody>
+    @PATCH("/notes/{Id}")
     suspend fun editNote(@Path("Id") noteId: String, @Body requestBody: RequestBody): Response<ResponseBody>
-
-    data class LoginResponse(
-        @SerializedName("access_token")
-        val token: String
-    )
 }
 class RetrofitInstance {
     companion object {

@@ -38,16 +38,6 @@
             app:navigationIcon="@drawable/baseline_menu"
             app:navigationIconTint="#FFFFFF" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_new"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#B2FFFFFF"
-            android:contentDescription="FAB"
-            app:menu="@menu/menu_new"
-            app:layout_anchor="@id/bottomAppBar"
-            app:srcCompat="@drawable/baseline_add_42" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

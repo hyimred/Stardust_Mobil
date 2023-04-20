@@ -31,6 +31,7 @@
                 android:padding="25dp"
                 android:gravity="center_horizontal">
 
+                <!-- PROFILKÉP MÉG NEM ELÉRHETŐ
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/avatar"
                     android:layout_width="80dp"
@@ -39,6 +40,7 @@
                     android:layout_centerHorizontal="true"
                     app:civ_border_color="#3f51b5"
                     app:civ_border_width="4dp"/>
+                    -->
 
                 <TextView
                     android:id="@+id/email_main"
@@ -108,7 +110,7 @@
                             android:text="reg_date"
                             android:textSize="15sp" />
                     </LinearLayout>
-
+                    <!-- EZ A FUNKCIÓ MÉG NEM ELÉRHETŐ
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,7 +127,6 @@
                             style="@style/Widget.MaterialComponents.Button.TextButton"
                             android:textSize="15sp" />
 
-
                         <Button
                             android:id="@+id/edit_password"
                             android:layout_width="wrap_content"
@@ -136,8 +137,19 @@
                             android:text="Change Password"
                             style="@style/Widget.MaterialComponents.Button.TextButton"
                             android:textSize="15sp" />
-                    </LinearLayout>
 
+                        <Button
+                            android:id="@+id/delete_account"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:padding="5dp"
+                            android:text="Delete Account"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                    -->
                 </LinearLayout>
 
             </RelativeLayout>
