@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -20,16 +22,21 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class EditNoteActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
-        val note_text = findViewById<TextInputEditText>(R.id.note_text)
+        val dateCreated = findViewById<TextView>(R.id.dateCreated)
+        val dateUpdated = findViewById<TextView>(R.id.dateUpdated)
+        val note_ID = findViewById<TextView>(R.id.noteId)
         val note_name = findViewById<TextInputEditText>(R.id.note_name)
-
+        val note_text = findViewById<TextInputEditText>(R.id.note_text)
         val noteId = intent.getStringExtra("noteId").toString()
+
         Log.d("retrofit ID", noteId)
 
         val interceptor = TokenInterceptor()
@@ -49,11 +56,18 @@ class EditNoteActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val item = response.body()
                     if (item != null) {
+                        Log.d("ITEM EDITNOTE", response.body().toString())
+                        note_ID.text = item.noteId
                         note_text.setText(item.content)
                         note_name.setText(item.title)
+                        val formatter = SimpleDateFormat("yyyy. MMMM dd.\n HH:mm:ss", Locale.getDefault())
+                        val dateCreatedString = item.dateCreated.let { formatter.format(it) }
+                        val dateUpdatedString = item.dateCreated.let { formatter.format(it) }
+                        dateCreated.text = dateCreatedString.toString()
+                        dateUpdated.text = dateUpdatedString.toString()
                     }
                 } else {
-                    Log.e("RETROFIT_ERROR", response.code().toString())
+                    Log.e("ITEM EDITNOTE", response.code().toString())
                 }
             }
         }

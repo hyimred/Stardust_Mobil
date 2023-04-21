@@ -11,6 +11,6 @@ data class NoteBody (
     @SerializedName("dateUpdated") val dateUpdated: Date,
     @SerializedName("isArchived") val isArchived: Boolean,
     @SerializedName("dateArchived") val dateArchived: Date,
-    @SerializedName("isDeleted") val isDeleted: Boolean,
-    @SerializedName("dateDeleted") val dateDeleted: Date
+    @SerializedName("isBinned") val isBinned: Boolean,
+    @SerializedName("dateBinned") val dateBinned: Date
 )

@@ -107,7 +107,7 @@ class BinActivity : AppCompatActivity() {
                             getSharedPreferences("Important", Context.MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
                         editor.putString("access_token", "")
-                        editor.commit()
+                        editor.apply()
                         true
                     }
                     else -> {
@@ -153,12 +153,12 @@ class BinActivity : AppCompatActivity() {
                                 val content = items[i].content
                                 val isArchived = items[i].isArchived
                                 val dateArchived = items[i].dateArchived
-                                val isDeleted = items[i].isDeleted
-                                val dateDeleted = items[i].dateDeleted
+                                val isBinned = items[i].isBinned
+                                val dateBinned = items[i].dateBinned
                                 val dateCreated = items[i].dateCreated
                                 val dateUpdated = items[i].dateUpdated
-                                if(items[i].isDeleted){
-                                    data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateDeleted, isArchived, isDeleted))
+                                if(items[i].isBinned){
+                                    data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateBinned, isArchived, isBinned))
                                 }
                             }
                             val adapter = BinCardAdapter(data, this@BinActivity)

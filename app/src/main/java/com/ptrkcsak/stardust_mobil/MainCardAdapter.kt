@@ -21,7 +21,6 @@ class MainCardAdapter(private val mList: List<ItemsViewModel>, private val conte
             .inflate(R.layout.main_note, parent, false)
         return ViewHolder(view)
     }
-    @SuppressLint("SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
         val activity = MainActivity()
@@ -50,27 +49,9 @@ class MainCardAdapter(private val mList: List<ItemsViewModel>, private val conte
             context.startActivity(intent)
         }
 
-
-
         holder.card.setOnClickListener {
-            val intent = Intent(context, NoteDataActivity::class.java)
-            intent.putExtra("previous", activity.javaClass.simpleName)
-            intent.putExtra("noteId", ItemsViewModel.noteId)
-            intent.putExtra("title", ItemsViewModel.title)
-            intent.putExtra("content", ItemsViewModel.desc)
-
-            /*
-            val formatter = SimpleDateFormat("yyyy.\nMMMM dd.")
-            val formattedDateCreated = ItemsViewModel.dateCreated.let { formatter.format(it) }
-            val formattedDateArchived = ItemsViewModel.dateArchived.let { formatter.format(it) }
-            val formattedDateUpdated = ItemsViewModel.dateUpdated.let { formatter.format(it) }
-            val formattedDateDeleted = ItemsViewModel.dateDeleted.let { formatter.format(it) }
-            intent.putExtra("dateCreated", formattedDateCreated)
-            intent.putExtra("dateArchived", formattedDateArchived)
-            intent.putExtra("dateUpdated", formattedDateUpdated)
-            intent.putExtra("dateDeleted", formattedDateDeleted)
-             */
-
+            val intent = Intent(context, EditNoteActivity::class.java)
+            intent.putExtra("noteId",ItemsViewModel.noteId)
             context.startActivity(intent)
         }
     }

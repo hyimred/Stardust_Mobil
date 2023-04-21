@@ -29,14 +29,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".NoteDataActivity"
-            android:exported="false" />
-        <activity
             android:name=".ArchiveActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BinActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NewByQrActivity"
             android:exported="false"

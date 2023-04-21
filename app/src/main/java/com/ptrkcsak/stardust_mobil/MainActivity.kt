@@ -201,17 +201,19 @@ class MainActivity : AppCompatActivity() {
                     if (items != null) {
                         val data = ArrayList<ItemsViewModel>()
                         for (i in 0 until items.count()) {
+                            Log.d("BINNED", response.body().toString())
                             val noteId = items[i].noteId
                             val title = items[i].title
                             val content = items[i].content
                             val isArchived = items[i].isArchived
                             val dateArchived = items[i].dateArchived
-                            val isDeleted = items[i].isDeleted
-                            val dateDeleted = items[i].dateDeleted
+                            val isBinned = items[i].isBinned
+                            val dateBinned = items[i].dateBinned
                             val dateCreated = items[i].dateCreated
                             val dateUpdated = items[i].dateUpdated
-                            if(!items[i].isArchived && !items[i].isDeleted){
-                                data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateDeleted, isArchived, isDeleted))
+                            if(!items[i].isArchived && !items[i].isBinned){
+                                data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateBinned, isArchived, isBinned))
+                                Log.e("DATA ADD", data.toString())
                             }
                         }
                         val adapter = MainCardAdapter(data, this@MainActivity)

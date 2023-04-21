@@ -153,12 +153,12 @@ class ArchiveActivity : AppCompatActivity() {
                             val content = items[i].content
                             val isArchived = items[i].isArchived
                             val dateArchived = items[i].dateArchived
-                            val isDeleted = items[i].isDeleted
-                            val dateDeleted = items[i].dateDeleted
+                            val isBinned = items[i].isBinned
+                            val dateBinned = items[i].dateBinned
                             val dateCreated = items[i].dateCreated
                             val dateUpdated = items[i].dateUpdated
                             if(items[i].isArchived){
-                                data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateDeleted, isArchived, isDeleted))
+                                data.add(ItemsViewModel(title, content, noteId, dateCreated, dateUpdated, dateArchived, dateBinned, isArchived, isBinned))
                             }
                         }
                         val adapter = ArchiveCardAdapter(data, this@ArchiveActivity)

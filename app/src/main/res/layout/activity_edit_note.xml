@@ -10,47 +10,151 @@
     android:background="#191C1E"
     android:padding="20dp">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/note_name_field"
-        app:endIconMode="clear_text"
-        android:hint="Note Title"
-        android:textColorHint="#808080"
-        app:boxStrokeColor="#808080"
-        app:endIconTint="#FFF"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:paddingBottom="10dp">
+        android:layout_margin="8dp"
+        android:id="@+id/card_view"
+        android:backgroundTint="#A8464B50"
+        app:cardCornerRadius="25dp">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:id="@+id/note_name"/>
+            android:orientation="vertical">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="26dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/note_text_field"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/note_name_field"
+                    app:endIconMode="clear_text"
+                    android:hint="Note Title"
+                    android:maxHeight="70dp"
+                    android:textColorHint="#808080"
+                    app:boxStrokeColor="#808080"
+                    app:endIconTint="#FFF"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:id="@+id/note_name"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/note_text_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconMode="clear_text"
+                    android:hint="Note Content"
+                    android:textColorHint="#808080"
+                    app:boxStrokeColor="#808080"
+                    app:endIconTint="#FFF"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_below="@+id/note_name_field"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxHeight="200dp"
+                        android:textColor="#FFF"
+                        android:id="@+id/note_text"
+                        android:minHeight="200dp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_below="@id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        android:hint="Note Content"
-        android:textColorHint="#808080"
-        app:boxStrokeColor="#808080"
-        app:endIconTint="#FFF"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_below="@+id/note_name_field"
-        android:paddingBottom="10dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
-            android:id="@+id/note_text"
-            android:minHeight="200dp"/>
+            android:orientation="horizontal">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/noteId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="noteId"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Created at:"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/dateCreated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="dateCreated"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Updated at:"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/dateUpdated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="dateUpdated"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

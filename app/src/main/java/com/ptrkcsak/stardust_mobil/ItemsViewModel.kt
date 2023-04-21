@@ -9,8 +9,8 @@ data class ItemsViewModel(
     val dateCreated: Date,
     val dateUpdated: Date,
     val dateArchived: Date? = null,
-    val dateDeleted: Date? = null,
+    val dateBinned: Date? = null,
     val isArchived: Boolean,
-    val isDeleted: Boolean
+    val isBinned: Boolean
 ) {
 }

@@ -35,25 +35,11 @@ class ArchiveCardAdapter(private val mList: List<ItemsViewModel>, private val co
             val intent = Intent(context, ArchiveActivity::class.java)
             context.startActivity(intent)
         }
-
-        holder.card.setOnClickListener {
-            val intent = Intent(context, NoteDataActivity::class.java)
-            intent.putExtra("previous", activity.javaClass.simpleName)
-            intent.putExtra("noteId", ItemsViewModel.noteId)
-            intent.putExtra("title", ItemsViewModel.title)
-            intent.putExtra("content", ItemsViewModel.desc)
-            intent.putExtra("dateCreated", ItemsViewModel.dateCreated)
-            intent.putExtra("dateArchived", ItemsViewModel.dateArchived)
-            intent.putExtra("dateUpdated", ItemsViewModel.dateUpdated)
-            intent.putExtra("dateDeleted", ItemsViewModel.dateDeleted)
-            context.startActivity(intent)
-        }
     }
     override fun getItemCount(): Int {
         return mList.size
     }
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val card: MaterialCardView = itemView.findViewById(R.id.card_view)
         val title: TextView = itemView.findViewById(R.id.title)
         val desc: TextView = itemView.findViewById(R.id.desc)
         val unarchiveNote: Button = itemView.findViewById(R.id.unarchiveNote)
