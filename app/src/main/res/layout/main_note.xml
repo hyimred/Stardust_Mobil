@@ -56,16 +56,6 @@
                     android:gravity="left">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/editNote"
-                        style="?attr/borderlessButtonStyle"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginHorizontal="12dp"
-                        android:foreground="@drawable/baseline_edit_24"
-                        android:foregroundTint="@color/white"
-                        android:tag="noteID"/>
-
-                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/exportNote"
                         style="?attr/borderlessButtonStyle"
                         android:layout_width="30dp"

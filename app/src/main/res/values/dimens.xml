@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="badge_text_size">10</dimen>
+    <dimen name="badge_size">10</dimen>
+    <dimen name="badge_padding">5</dimen>
+</resources>

@@ -7,9 +7,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -31,6 +29,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
 
 class BinActivity : AppCompatActivity() {
         private lateinit var recyclerView: RecyclerView
@@ -38,8 +37,12 @@ class BinActivity : AppCompatActivity() {
         private lateinit var actionBarToggle: ActionBarDrawerToggle
         private lateinit var navView: NavigationView
         private lateinit var navEmail: TextView
+        private lateinit var noteNumber: TextView
+        private lateinit var registerDate: TextView
         private lateinit var swipeRefreshLayout: SwipeRefreshLayout
         lateinit var emailText: String
+        lateinit var regText: String
+        var numText : Int = 0
 
         val SPLASH_TIME_OUT = 1000;
         @RequiresApi(Build.VERSION_CODES.Q)
@@ -65,7 +68,11 @@ class BinActivity : AppCompatActivity() {
 
             bottomAppBar.setNavigationOnClickListener {
                 navEmail = findViewById(R.id.email)
-                navEmail.setText(emailText)
+                navEmail.text = emailText
+                noteNumber = findViewById(R.id.note_number)
+                noteNumber.text = numText.toString()
+                registerDate = findViewById(R.id.registration_date)
+                registerDate.text = regText
                 drawerLayout.openDrawer(navView)
                 if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     this.drawerLayout.closeDrawer(GravityCompat.START)
@@ -84,10 +91,6 @@ class BinActivity : AppCompatActivity() {
                 when (menuItem.itemId) {
                     R.id.home -> {
                         startActivity(Intent(this@BinActivity, MainActivity::class.java))
-                        true
-                    }
-                    R.id.settings -> {
-                        startActivity(Intent(this@BinActivity, ProfileActivity::class.java))
                         true
                     }
                     R.id.archive -> {
@@ -115,7 +118,6 @@ class BinActivity : AppCompatActivity() {
                     }
                 }
             }
-
             swipeRefreshLayout = findViewById(R.id.swiperefresh)
             swipeRefreshLayout.setOnRefreshListener {
                 Handler().postDelayed({
@@ -128,7 +130,6 @@ class BinActivity : AppCompatActivity() {
             recyclerView = findViewById(R.id.recycler)
             recyclerView.layoutManager = LinearLayoutManager(this)
         }
-
         private fun getNotes() {
             val interceptor = TokenInterceptor()
             val client: OkHttpClient = OkHttpClient.Builder()
@@ -148,6 +149,7 @@ class BinActivity : AppCompatActivity() {
                         if (items != null) {
                             val data = ArrayList<ItemsViewModel>()
                             for (i in 0 until items.count()) {
+                                if(items.isNotEmpty()){numText = items.count()}
                                 val noteId = items[i].noteId
                                 val title = items[i].title
                                 val content = items[i].content
@@ -168,7 +170,6 @@ class BinActivity : AppCompatActivity() {
                 }
             }
         }
-
         fun deleteNote(noteId: String) {
             val interceptor = TokenInterceptor()
             val client: OkHttpClient = OkHttpClient.Builder()
@@ -195,7 +196,6 @@ class BinActivity : AppCompatActivity() {
                 }
             }
         }
-
         fun archiveNote(noteId: String) {
             val interceptor = TokenInterceptor()
             val client: OkHttpClient = OkHttpClient.Builder()
@@ -249,7 +249,7 @@ class BinActivity : AppCompatActivity() {
                 }
             }
         }
-
+        @SuppressLint("SimpleDateFormat")
         private fun getProfile() {
             val interceptor = TokenInterceptor()
             val client: OkHttpClient = OkHttpClient.Builder()
@@ -267,6 +267,9 @@ class BinActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val user = response.body()
                         emailText = user?.email.toString()
+                        val formatter = SimpleDateFormat("yyyy.\nMMMM dd.")
+                        val formattedDate = user?.registartionDate?.let { formatter.format(it) }
+                        regText = formattedDate.toString()
                     }
                 }
             }

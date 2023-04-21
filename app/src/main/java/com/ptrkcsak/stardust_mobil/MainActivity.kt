@@ -37,6 +37,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +47,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
     private lateinit var navEmail: TextView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var noteNumber: TextView
+    private lateinit var registerDate: TextView
     lateinit var emailText: String
+    lateinit var regText: String
+    var numText : Int = 0
 
     val SPLASH_TIME_OUT = 1000;
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -72,8 +77,16 @@ class MainActivity : AppCompatActivity() {
 
         bottomAppBar.setNavigationOnClickListener {
             navEmail = findViewById(R.id.email)
-            navEmail.setText(emailText)
+            navEmail.text = emailText
+
+            noteNumber = findViewById(R.id.note_number)
+            noteNumber.text = numText.toString()
+
+            registerDate = findViewById(R.id.registration_date)
+            registerDate.text = regText
+
             drawerLayout.openDrawer(navView)
+
             if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 this.drawerLayout.closeDrawer(GravityCompat.START)
                 super.onBackPressed()
@@ -119,10 +132,6 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.home -> {
                     startActivity(Intent(this@MainActivity, MainActivity::class.java))
-                    true
-                }
-                R.id.settings -> {
-                    startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
                     true
                 }
                 R.id.archive -> {
@@ -182,7 +191,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun getNotes() {
-
         val interceptor = TokenInterceptor()
         val client: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -201,6 +209,7 @@ class MainActivity : AppCompatActivity() {
                     if (items != null) {
                         val data = ArrayList<ItemsViewModel>()
                         for (i in 0 until items.count()) {
+                            if(items.isNotEmpty()){numText = items.count()}
                             Log.d("BINNED", response.body().toString())
                             val noteId = items[i].noteId
                             val title = items[i].title
@@ -277,6 +286,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    @SuppressLint("SimpleDateFormat")
     private fun getProfile() {
         val interceptor = TokenInterceptor()
         val client: OkHttpClient = OkHttpClient.Builder()
@@ -294,6 +304,9 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val user = response.body()
                     emailText = user?.email.toString()
+                    val formatter = SimpleDateFormat("yyyy.\nMMMM dd.")
+                    val formattedDate = user?.registartionDate?.let { formatter.format(it) }
+                    regText = formattedDate.toString()
                 }
             }
         }
