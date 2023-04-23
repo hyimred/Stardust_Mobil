@@ -117,6 +117,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, NewByQrActivity::class.java))
                     true
                 }
+                R.id.settings -> {
+                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+                    true
+                }
                 else -> false
             }
         }
@@ -143,6 +147,10 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.devlog -> {
+                    true
+                }
+                R.id.settings -> {
+                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                     true
                 }
                 R.id.logout -> {
