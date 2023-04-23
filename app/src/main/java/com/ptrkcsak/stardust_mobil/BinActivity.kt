@@ -104,6 +104,10 @@ class BinActivity : AppCompatActivity() {
                     R.id.devlog -> {
                         true
                     }
+                    R.id.settings -> {
+                        startActivity(Intent(this@BinActivity, SettingsActivity::class.java))
+                        true
+                    }
                     R.id.logout -> {
                         startActivity(Intent(this@BinActivity, LoadingActivity::class.java))
                         val sharedPreferences =

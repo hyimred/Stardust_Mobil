@@ -106,6 +106,10 @@ class ArchiveActivity : AppCompatActivity() {
                 R.id.devlog -> {
                     true
                 }
+                R.id.settings -> {
+                    startActivity(Intent(this@ArchiveActivity, SettingsActivity::class.java))
+                    true
+                }
                 R.id.logout -> {
                     startActivity(Intent(this@ArchiveActivity, LoadingActivity::class.java))
                     val sharedPreferences =
