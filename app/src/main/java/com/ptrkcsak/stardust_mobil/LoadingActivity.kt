@@ -2,6 +2,7 @@ package com.ptrkcsak.stardust_mobil
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import java.util.Locale
 
 
 class LoadingActivity : AppCompatActivity() {
@@ -26,8 +28,8 @@ class LoadingActivity : AppCompatActivity() {
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
         splashScreenAnimation()
+        getLang()
     }
-
     fun splashScreenAnimation() {
         val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
         val token = prefs.getString("access_token", null)
@@ -47,5 +49,16 @@ class LoadingActivity : AppCompatActivity() {
                 Log.d("USERTOKEN", token)
             }
         }, SPLASH_TIME_OUT.toLong())
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }

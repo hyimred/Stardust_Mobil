@@ -2,8 +2,10 @@ package com.ptrkcsak.stardust_mobil
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.SurfaceHolder
@@ -31,6 +33,7 @@ import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
+import java.util.Locale
 
 class NewByQrActivity : AppCompatActivity() {
     private val requestCodeCameraPermission = 1001
@@ -42,6 +45,7 @@ class NewByQrActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNewByQrBinding.inflate(layoutInflater)
         val view = binding.root
+        getLang()
         setContentView(view)
         if (ContextCompat.checkSelfPermission(
                 this@NewByQrActivity, Manifest.permission.CAMERA
@@ -54,6 +58,17 @@ class NewByQrActivity : AppCompatActivity() {
         val aniSlide: Animation =
             AnimationUtils.loadAnimation(this@NewByQrActivity, R.anim.scanner_animation)
         binding.barcodeLine.startAnimation(aniSlide)
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     private fun setupControls() {

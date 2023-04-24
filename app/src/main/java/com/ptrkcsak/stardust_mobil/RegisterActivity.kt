@@ -1,6 +1,8 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +17,7 @@ import retrofit2.Response
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import java.util.Locale
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -29,6 +32,8 @@ class RegisterActivity : AppCompatActivity() {
         windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+
+        getLang()
 
         val btn_login = findViewById<View>(R.id.btn_login) as Button
         btn_login.setOnClickListener {
@@ -65,6 +70,18 @@ class RegisterActivity : AppCompatActivity() {
                 .show()
             }
         }
+    }
+
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     private fun signup(email: String, password: String){

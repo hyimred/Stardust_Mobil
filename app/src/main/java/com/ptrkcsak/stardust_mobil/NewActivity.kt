@@ -1,6 +1,8 @@
 package com.ptrkcsak.stardust_mobil
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +20,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Locale
 
 class NewActivity : AppCompatActivity() {
 
@@ -27,6 +30,7 @@ class NewActivity : AppCompatActivity() {
 
         val note_text = findViewById<TextInputEditText>(R.id.note_text)
         val note_name = findViewById<TextInputEditText>(R.id.note_name)
+        getLang()
 
         val submit = findViewById<Button>(R.id.submit)
         submit.setOnClickListener{
@@ -44,6 +48,17 @@ class NewActivity : AppCompatActivity() {
         back.setOnClickListener{
             startActivity(Intent(this@NewActivity, MainActivity::class.java))
         }
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
     fun newNote(title: String, content: String) {
         val interceptor = TokenInterceptor()

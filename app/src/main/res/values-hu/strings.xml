@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stardust Jegyzettömb</string>
+    <string name="new_note">Új Jegyzet</string>
+    <string name="talk_with_god">Beszélj Istennel</string>
+    <string name="new_with_qr">Új QR Kóddal</string>
+    <string name="main">Főoldal</string>
+    <string name="archive">Archívum</string>
+    <string name="bin">Lomtár</string>
+    <string name="console_log">Console Log</string>
+    <string name="settings">Beállítások</string>
+    <string name="ip_address">IP CÍM</string>
+    <string name="username_email">Felhasználó név</string>
+    <string name="all_notes">Összes Jegyzet:</string>
+    <string name="registration_ndate">Regisztráció Ideje:</string>
+    <string name="select_language">Nyelv Kiválasztás:</string>
+    <string name="language">Nyelv</string>
+    <string name="theme">Téma</string>
+    <string name="select_theme">Téma Kiválasztás:</string>
+    <string name="submit">Küldés</string>
+    <string name="registration">Regisztráció</string>
+    <string name="e_mail_address">E-mail Cím</string>
+    <string name="password">Jelszó</string>
+    <string name="password_again">Jelszó újra</string>
+    <string name="you_have_an_account">Van már profilod?</string>
+    <string name="login_here">Jelentkezz be</string>
+    <string name="create_account">Profil Létrehozása</string>
+    <string name="note_title">Jegyzet Címe</string>
+    <string name="note_content">Jegyzet Tartalma</string>
+    <string name="back">Vissza</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="you_don_t_have_an_account">Nincs még profilod?</string>
+    <string name="register_here">Regisztrálj itt</string>
+    <string name="share">Megosztás</string>
+    <string name="created_at">Létrehozva ekkor:</string>
+    <string name="updated_at">Módosítva ekkor:</string>
+    <string name="logout">Kijelentkezés</string>
+</resources>

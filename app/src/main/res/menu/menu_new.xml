@@ -4,19 +4,19 @@
     <group>
         <item
             android:id="@+id/new_note"
-            android:title="New Note"
+            android:title="@string/new_note"
             android:icon="@drawable/baseline_add_42"
-            app:showAsAction="always"/>
+            app:showAsAction="ifRoom"/>
 
         <item
             android:id="@+id/new_god"
-            android:title="Talk with God"
+            android:title="@string/talk_with_god"
             android:icon="@drawable/jesus_christ_svgrepo_com"
             app:showAsAction="always"/>
 
         <item
             android:id="@+id/new_qr"
-            android:title="New with QR"
+            android:title="@string/new_with_qr"
             android:icon="@drawable/baseline_qr_code_24"
             app:showAsAction="always"/>
     </group>

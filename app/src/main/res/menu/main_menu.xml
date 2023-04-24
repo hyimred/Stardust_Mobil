@@ -7,22 +7,22 @@
                 <item
                     android:id="@+id/home"
                     android:icon="@drawable/baseline_home_24"
-                    android:title="Main"
+                    android:title="@string/main"
                     app:showAsAction="always"
                     app:actionViewClass="android.widget.TextView"/>
 
                 <item
                     android:id="@+id/archive"
                     android:icon="@drawable/baseline_archive_24"
-                    android:title="Archive"
-                    app:showAsAction="always"
+                    android:title="@string/archive"
+                    app:showAsAction="ifRoom"
                     app:actionViewClass="android.widget.TextView"/>
 
                 <item
                     android:id="@+id/bin"
                     android:icon="@drawable/baseline_delete_24"
-                    android:title="Bin"
-                    app:showAsAction="always"
+                    android:title="@string/bin"
+                    app:showAsAction="ifRoom"
                     app:actionViewClass="android.widget.TextView"/>
     </group>
 
@@ -30,14 +30,14 @@
         <item
             android:id="@+id/devlog"
             android:icon="@drawable/baseline_developer_mode_24"
-            android:title="Console Log"
-            app:showAsAction="always"/>
+            android:title="@string/console_log"
+            app:showAsAction="ifRoom"/>
 
         <item
             android:id="@+id/settings"
             android:icon="@drawable/baseline_settings"
-            android:title="Settings"
-            app:showAsAction="always"
+            android:title="@string/settings"
+            app:showAsAction="ifRoom"
             app:actionViewClass="android.widget.TextView"/>
     </group>
 
@@ -45,7 +45,7 @@
         <item
             android:id="@+id/logout"
             android:icon="@drawable/baseline_logout"
-            android:title="Logout"
+            android:title="@string/logout"
             app:showAsAction="always"/>
     </group>
 

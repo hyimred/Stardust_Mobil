@@ -29,7 +29,7 @@
             android:id="@+id/back"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:text="Back"
+            android:text="@string/back"
             android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />
@@ -37,7 +37,7 @@
             android:id="@+id/share"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:text="Share"
+            android:text="@string/share"
             android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />

@@ -3,6 +3,7 @@ package com.ptrkcsak.stardust_mobil
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,6 +33,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ArchiveActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -65,6 +67,7 @@ class ArchiveActivity : AppCompatActivity() {
 
         getNotes()
         getProfile()
+        getLang()
 
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
@@ -136,6 +139,17 @@ class ArchiveActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     private fun getNotes() {

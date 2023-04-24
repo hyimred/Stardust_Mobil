@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/note_name_field"
                     app:endIconMode="clear_text"
-                    android:hint="Note Title"
+                    android:hint="@string/note_title"
                     android:maxHeight="70dp"
                     android:textColorHint="#808080"
                     app:boxStrokeColor="#808080"
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:endIconMode="clear_text"
-                    android:hint="Note Content"
+                    android:hint="@string/note_content"
                     android:textColorHint="#808080"
                     app:boxStrokeColor="#808080"
                     app:endIconTint="#FFF"
@@ -113,7 +113,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Created at:"
+                android:text="@string/created_at"
                 android:textSize="20sp" />
 
             <TextView
@@ -139,7 +139,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Updated at:"
+                android:text="@string/updated_at"
                 android:textSize="20sp" />
 
 
@@ -166,7 +166,7 @@
             android:id="@+id/back"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:text="Back"
+            android:text="@string/back"
             android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />
@@ -175,7 +175,7 @@
             android:id="@+id/submit"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:text="Submit"
+            android:text="@string/submit"
             android:backgroundTint="#3E4347"
             android:layout_margin="5dp"
             />

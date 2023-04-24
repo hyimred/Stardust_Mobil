@@ -1,7 +1,9 @@
 package com.ptrkcsak.stardust_mobil
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -36,6 +38,8 @@ class EditNoteActivity : AppCompatActivity() {
         val note_name = findViewById<TextInputEditText>(R.id.note_name)
         val note_text = findViewById<TextInputEditText>(R.id.note_text)
         val noteId = intent.getStringExtra("noteId").toString()
+
+        getLang()
 
         Log.d("retrofit ID", noteId)
 
@@ -84,6 +88,17 @@ class EditNoteActivity : AppCompatActivity() {
         back.setOnClickListener{
             startActivity(Intent(this@EditNoteActivity, MainActivity::class.java))
         }
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
     fun editNote(noteId: String, title: String, content: String) {
         val interceptor = TokenInterceptor()

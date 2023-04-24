@@ -3,13 +3,16 @@ package com.ptrkcsak.stardust_mobil
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -36,6 +39,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
+import java.util.Locale
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -69,6 +73,7 @@ class SettingsActivity : AppCompatActivity() {
 
         getNotes()
         getProfile()
+        getLang()
 
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
@@ -148,14 +153,31 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         val language = findViewById<TextInputLayout>(R.id.language)
-        val listLang = listOf("English", "Deusch", "JP", "Magyar")
+        val listLang = listOf("English", "Deusch", "Magyar")
         val adapterLang = ArrayAdapter(this, R.layout.list_item, listLang)
         (language.editText as? AutoCompleteTextView)?.setAdapter(adapterLang)
+
 
         val theme = findViewById<TextInputLayout>(R.id.theme)
         val listTheme = listOf("Blue", "Red", "Green", "Purple", "Yellow", "Gray", "Pink")
         val adapterTheme = ArrayAdapter(this, R.layout.list_item, listTheme)
         (theme.editText as? AutoCompleteTextView)?.setAdapter(adapterTheme)
+
+        val submit = findViewById<Button>(R.id.submit)
+        submit.setOnClickListener {
+            val newLanguage: String = when (theme.editText?.text.toString()) {
+                "English" -> "en"
+                "Deusch" -> "de"
+                "Magyar" -> "hu"
+                else -> "hu"
+            }
+            val sharedPreferences =
+                getSharedPreferences("Lang", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("language", newLanguage)
+            editor.apply()
+            recreate()
+        }
 
     }
     private fun getNotes() {
@@ -210,5 +232,17 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        Log.d("LANG", newLanguage)
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }

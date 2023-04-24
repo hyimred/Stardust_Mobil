@@ -3,6 +3,7 @@ package com.ptrkcsak.stardust_mobil
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -23,6 +24,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale
 
 
 class LoginActivity : AppCompatActivity() {
@@ -38,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        getLang()
 
         val btn_register = findViewById<View>(R.id.btn_register) as Button
         btn_register.setOnClickListener {
@@ -79,6 +82,17 @@ class LoginActivity : AppCompatActivity() {
             }
             dialog.show()
         }
+    }
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
     private fun signin(email: String, password: String){
         val retIn = RetrofitInstance.getRetrofitInstance().create(ApiInterface::class.java)

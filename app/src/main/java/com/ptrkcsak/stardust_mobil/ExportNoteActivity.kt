@@ -1,7 +1,9 @@
 package com.ptrkcsak.stardust_mobil
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
@@ -23,6 +25,7 @@ import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
+import java.util.Locale
 
 
 class ExportNoteActivity : AppCompatActivity() {
@@ -40,6 +43,7 @@ class ExportNoteActivity : AppCompatActivity() {
         val qr: ImageView = findViewById(R.id.qr)
 
         Log.d("retrofit ID", noteId)
+        getLang()
 
         val interceptor = TokenInterceptor()
         val client: OkHttpClient = OkHttpClient.Builder()
@@ -93,6 +97,18 @@ class ExportNoteActivity : AppCompatActivity() {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(contentResolver, bitmap, "stardust_exported_note", null)
         return Uri.parse(path)
+    }
+
+    private fun getLang(){
+        val newLanguage: String
+        val prefs = getSharedPreferences("Important", Context.MODE_PRIVATE)
+        newLanguage = prefs.getString("language", null).toString()
+        val locale = Locale(newLanguage)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
 }

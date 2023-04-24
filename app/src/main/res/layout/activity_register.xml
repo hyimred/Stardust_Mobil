@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/play_bold"
                 android:paddingBottom="30dp"
-                android:text="Registration"
+                android:text="@string/registration"
                 android:textColor="#000000"
                 android:textSize="25dp" />
 
@@ -43,7 +43,7 @@
                 android:background="@drawable/rounded_login_ui"
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
-                android:hint="E-mail Address"
+                android:hint="@string/e_mail_address"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textColorHint="#000000" />
@@ -56,7 +56,7 @@
                 android:background="@drawable/rounded_login_ui"
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -70,7 +70,7 @@
                 android:background="@drawable/rounded_login_ui"
                 android:backgroundTint="#ffffff"
                 android:fontFamily="@font/play_bold"
-                android:hint="Password again"
+                android:hint="@string/password_again"
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -87,9 +87,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/play_bold"
-                    android:text="You have an account?"
+                    android:text="@string/you_have_an_account"
                     android:textColor="#000000"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
                 <Button
                     android:id="@+id/btn_login"
@@ -97,8 +97,8 @@
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     android:fontFamily="@font/play_bold"
-                    android:paddingLeft="5dp"
-                    android:text="Login here"
+                    android:paddingStart="5dp"
+                    android:text="@string/login_here"
                     android:textAllCaps="false"
                     android:textColor="#191C1E" />
             </LinearLayout>
@@ -110,7 +110,7 @@
                 android:paddingHorizontal="20dp"
                 android:backgroundTint="#191C1E"
                 android:fontFamily="@font/play_bold"
-                android:text="Create account"
+                android:text="@string/create_account"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
 
