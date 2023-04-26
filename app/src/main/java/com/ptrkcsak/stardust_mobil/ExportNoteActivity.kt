@@ -72,6 +72,8 @@ class ExportNoteActivity : AppCompatActivity() {
                     }
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
+                    Log.d("QRTEXT", qrText)
+                    Log.d("NOTEID", noteId)
                 }
             }
         }
