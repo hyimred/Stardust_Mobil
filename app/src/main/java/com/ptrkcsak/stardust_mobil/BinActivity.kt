@@ -108,7 +108,6 @@ class BinActivity : AppCompatActivity() {
                         true
                     }
                     R.id.settings -> {
-                        startActivity(Intent(this@BinActivity, SettingsActivity::class.java))
                         true
                     }
                     R.id.logout -> {

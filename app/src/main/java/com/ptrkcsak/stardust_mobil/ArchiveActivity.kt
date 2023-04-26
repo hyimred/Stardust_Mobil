@@ -110,7 +110,6 @@ class ArchiveActivity : AppCompatActivity() {
                     true
                 }
                 R.id.settings -> {
-                    startActivity(Intent(this@ArchiveActivity, SettingsActivity::class.java))
                     true
                 }
                 R.id.logout -> {

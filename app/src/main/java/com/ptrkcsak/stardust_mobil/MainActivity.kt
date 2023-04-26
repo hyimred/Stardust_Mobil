@@ -153,7 +153,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.settings -> {
-                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                     true
                 }
                 R.id.logout -> {
