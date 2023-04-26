@@ -5,4 +5,5 @@
 
 Az alkalmazás telepitője elérhető [itt](https://www.dropbox.com/s/s3eae3ewo3sq3zp/app-debug.apk?dl=0).
 
-![asd](image link)
+## Az alkalmazás
+<img  src="md/Screenshot_20230426_134316_Stardust%20Notepad.jpg">
