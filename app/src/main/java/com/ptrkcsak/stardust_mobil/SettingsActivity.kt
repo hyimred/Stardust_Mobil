@@ -153,7 +153,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         val language = findViewById<TextInputLayout>(R.id.language)
-        val listLang = listOf("English", "Deusch", "Magyar")
+        val listLang = listOf("English", "Deusch","", "Magyar")
         val adapterLang = ArrayAdapter(this, R.layout.list_item, listLang)
         (language.editText as? AutoCompleteTextView)?.setAdapter(adapterLang)
 
@@ -169,10 +169,10 @@ class SettingsActivity : AppCompatActivity() {
                 "English" -> "en"
                 "Deusch" -> "de"
                 "Magyar" -> "hu"
-                else -> "hu"
+                else -> "en"
             }
             val sharedPreferences =
-                getSharedPreferences("Lang", Context.MODE_PRIVATE)
+                getSharedPreferences("Important", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("language", newLanguage)
             editor.apply()
