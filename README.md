@@ -2,7 +2,7 @@
 Ez a dokumentáció a BMSzC Petrik Lajos Két Tanítási Nyelvű Technikumi képzésem során készített csoportos vizsgaremek Mobil alkalmazás Kliensének bemutatására szolgál. Az alkalmazás egy cross-platform jegyzet kezelő, három Klienssel és egy közös szerver oldali Backend-del.
 
 ## Telepités
-### ⚠ Az alkalmazás működéséhez szükséges a <a href="https://github.com/blaiseludvig/stardust-backend">Backend</a> futtatása.
+### ⚠ Az alkalmazás működéséhez szükséges a <a href="https://github.com/blaiseludvig/stardust-backend">*Backend*</a> futtatása.
 ### Az alkalmazás telepitője elérhető <a href="https://www.dropbox.com/s/s3eae3ewo3sq3zp/app-debug.apk?dl=0" target="_blank">*itt*</a>.
 
 ## Az alkalmazás
