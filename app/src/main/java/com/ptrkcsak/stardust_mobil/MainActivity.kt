@@ -75,9 +75,7 @@ class MainActivity : AppCompatActivity() {
         getNotes()
         getProfile()
         getLang()
-
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
-
         bottomAppBar.setNavigationOnClickListener {
             navEmail = findViewById(R.id.email)
             navEmail.text = emailText
@@ -95,15 +93,12 @@ class MainActivity : AppCompatActivity() {
                 super.onBackPressed()
             }
         }
-
         val btn_new = findViewById<FloatingActionButton>(R.id.btn_new)
         val popup = PopupMenu(this, btn_new)
         popup.menuInflater.inflate(R.menu.menu_new, popup.menu)
-
         btn_new.setOnClickListener{
             popup.show()
         }
-
         popup.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.new_note -> {
@@ -127,14 +122,12 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
         drawerLayout = findViewById(R.id.drawerLayout)
         actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
         drawerLayout.addDrawerListener(actionBarToggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         actionBarToggle.syncState()
         navView = findViewById(R.id.navView)
-
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
@@ -177,7 +170,6 @@ class MainActivity : AppCompatActivity() {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }, SPLASH_TIME_OUT.toLong())
         }
-
         recyclerView = findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
