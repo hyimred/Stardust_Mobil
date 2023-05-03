@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import retrofit2.http.Headers
+import java.net.ConnectException
 
 interface ApiInterface {
     @Headers("Content-Type:application/json")
