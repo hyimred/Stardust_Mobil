@@ -20,4 +20,8 @@ Ez a dokumentáció a BMSzC Petrik Lajos Két Tanítási Nyelvű Technikumi kép
 
 + Material Design: A Material Design egy modern és intuitív dizájnnyelv, amelyet a Google fejlesztett ki, és amely elősegíti az összhangot az alkalmazások között, valamint lehetővé teszi a könnyű és egyértelmű navigációt és az információ szemléletes megjelenítését különböző platformokon.
 
++ Robohash: A Robohash egy olyan webes szolgáltatás, amely egy adott szöveges bevitel (itt email cím) alapján generál egyedi robotképeket. Ezt a profilkép generáláshoz használtam.
+
++ Picasso: Ez egy közkedvelt, nyílt forráskódú képfeldolgozási könyvtár Android alkalmazásokhoz. Ezzel URL címet könnyen tudunk beállítani a kép forrásának.
+
 ### Az alkalmazáshoz egy rövid gyorstalpalót is készítettem amit [*itt*](https://www.canva.com/design/DAFhOxpbCZE/hvtPHXAKnPlAy-KXe9UMlw/view?website#2:stardust-notepad) lehet megtekinteni

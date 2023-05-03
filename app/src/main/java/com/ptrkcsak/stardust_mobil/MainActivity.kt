@@ -28,9 +28,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+import com.mikhaellopez.circularimageview.CircularImageView
 import com.ptrkcsak.stardust_mobil.*
 import com.ptrkcsak.stardust_mobil.Constans.BASE_URL
 import com.ptrkcsak.stardust_mobil.Constans.USER_TOKEN
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
     private lateinit var navEmail: TextView
+    private lateinit var avatar: CircularImageView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var noteNumber: TextView
     private lateinit var registerDate: TextView
@@ -85,6 +88,9 @@ class MainActivity : AppCompatActivity() {
 
             registerDate = findViewById(R.id.registration_date)
             registerDate.text = regText
+
+            avatar = findViewById(R.id.avatar)
+            Picasso.get().load("https://robohash.org/$emailText").into(avatar)
 
             drawerLayout.openDrawer(navView)
 
