@@ -3,7 +3,13 @@ Ez a dokumentáció a BMSzC Petrik Lajos Két Tanítási Nyelvű Technikumi kép
 
 ## Telepités
 ### ⚠ Az alkalmazás működéséhez szükséges a <a href="https://github.com/blaiseludvig/stardust-backend">*Backend*</a> futtatása.
-### Az alkalmazás telepitője elérhető <a href="https://www.dropbox.com/s/s3eae3ewo3sq3zp/app-debug.apk?dl=0" target="_blank">*itt*</a>.
+### Mielőtt az Android Studio-ban buildelnénk, változtassuk meg a szerver IP címét és a port számát a konstansok között.
+```kotlin
+object Constans {
+    var BASE_URL = "http://192.168.0.14:3000" // A szerver IP címe és port száma
+    var USER_TOKEN = "user_token"
+}
+```
 
 ## Az alkalmazás
 #### Az alkalmazás frontendjének fejlesztése során az alábbi technológiákat használtam:

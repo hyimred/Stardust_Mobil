@@ -63,25 +63,6 @@ class LoginActivity : AppCompatActivity() {
             val password = login_password.text.toString()
             signin(email, password)
         }
-
-        val setIP = findViewById<Button>(R.id.setIP)
-        setIP.setOnClickListener{
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.set_ip, null)
-            val editText = dialogView.findViewById<EditText>(R.id.edit_text)
-            val okButton = dialogView.findViewById<Button>(R.id.ok_button)
-
-            val dialog = AlertDialog.Builder(this)
-                .setView(dialogView)
-                .create()
-
-            editText.setText(BASE_URL)
-
-            okButton.setOnClickListener {
-                BASE_URL = editText.text.toString()
-                dialog.dismiss()
-            }
-            dialog.show()
-        }
     }
     private fun getLang(){
         val newLanguage: String

@@ -103,17 +103,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/login_box"
-            android:background="@color/transparent"
-            android:id="@+id/setIP"
-            app:icon="@drawable/baseline_developer_mode_24"
-            android:text="Set Server IP\n(Only for test)"
-            />
-
     </LinearLayout>
 
 
