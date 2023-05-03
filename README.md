@@ -21,19 +21,3 @@ Ez a dokumentáció a BMSzC Petrik Lajos Két Tanítási Nyelvű Technikumi kép
 + Material Design: A Material Design egy modern és intuitív dizájnnyelv, amelyet a Google fejlesztett ki, és amely elősegíti az összhangot az alkalmazások között, valamint lehetővé teszi a könnyű és egyértelmű navigációt és az információ szemléletes megjelenítését különböző platformokon.
 
 ### Az alkalmazáshoz egy rövid gyorstalpalót is készítettem amit [*itt*](https://www.canva.com/design/DAFhOxpbCZE/hvtPHXAKnPlAy-KXe9UMlw/view?website#2:stardust-notepad) lehet megtekinteni
-
-## Főbb funkciók
-####  Teljes képernyős nézet kialakítása
-```kotlin
-val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)
-
-windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-
-windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
-```
-
-```kotlin
-
-```
