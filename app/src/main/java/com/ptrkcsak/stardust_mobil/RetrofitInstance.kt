@@ -26,8 +26,12 @@ interface ApiInterface {
     suspend fun postGod(): Response<Unit>
     @POST("/notes")
     suspend fun postNote(@Body requestBody: RequestBody): Response<ResponseBody>
-    @GET("/profile")
+    @GET("/account/profile")
     suspend fun getProfile(): Response<User>
+    @PATCH("/account")
+    suspend fun updateProfile(@Body requestBody: RequestBody): Response<Unit>
+    @DELETE("/account")
+    suspend fun deleteProfile(): Response<Unit>
     @DELETE("/notes/{Id}")
     suspend fun deleteNote(@Path("Id") noteId: String): Response<ResponseBody>
     @PATCH("/notes/bin/{Id}")

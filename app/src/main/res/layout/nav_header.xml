@@ -10,13 +10,13 @@
     android:gravity="center_horizontal"
     android:background="@color/stardust_background">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:paddingVertical="20dp">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/avatar"
@@ -35,53 +35,6 @@
             android:textSize="20sp"
             android:textColor="@color/white" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/all_notes"
-                android:textSize="15sp" />
-            <TextView
-                android:id="@+id/note_number"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/note_number"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/registration_ndate"
-                android:textSize="15sp" />
-            <TextView
-                android:id="@+id/registration_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/reg_date"
-                android:textSize="15sp" />
-        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

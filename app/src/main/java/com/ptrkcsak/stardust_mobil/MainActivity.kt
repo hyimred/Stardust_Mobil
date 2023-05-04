@@ -52,13 +52,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navEmail: TextView
     private lateinit var avatar: CircularImageView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var noteNumber: TextView
-    private lateinit var registerDate: TextView
-    lateinit var emailText: String
-    lateinit var regText: String
-    var numText : Int = 0
+    private lateinit var emailText: String
+    private var numText : Int = 0
 
-    val SPLASH_TIME_OUT = 1000;
+    private val SPLASH_TIME_OUT = 1000;
     @RequiresApi(Build.VERSION_CODES.Q)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,16 +75,13 @@ class MainActivity : AppCompatActivity() {
         getNotes()
         getProfile()
         getLang()
+
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
         bottomAppBar.setNavigationOnClickListener {
             navEmail = findViewById(R.id.email)
             navEmail.text = emailText
 
-            noteNumber = findViewById(R.id.note_number)
-            noteNumber.text = numText.toString()
 
-            registerDate = findViewById(R.id.registration_date)
-            registerDate.text = regText
 
             avatar = findViewById(R.id.avatar)
             Picasso.get().load("https://robohash.org/$emailText").into(avatar)
@@ -121,10 +115,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, NewByQrActivity::class.java))
                     true
                 }
-                R.id.settings -> {
-                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
-                    true
-                }
                 else -> false
             }
         }
@@ -152,6 +142,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.settings -> {
+                    startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
                     true
                 }
                 R.id.logout -> {
@@ -305,7 +296,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    @SuppressLint("SimpleDateFormat")
     private fun getProfile() {
         val interceptor = TokenInterceptor()
         val client: OkHttpClient = OkHttpClient.Builder()
@@ -323,9 +313,6 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val user = response.body()
                     emailText = user?.email.toString()
-                    val formatter = SimpleDateFormat("yyyy.\nMMMM dd.")
-                    val formattedDate = user?.registartionDate?.let { formatter.format(it) }
-                    regText = formattedDate.toString()
                 }
             }
         }

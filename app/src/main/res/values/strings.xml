@@ -42,4 +42,7 @@
     <string name="created_at">Created at:</string>
     <string name="updated_at">Updated at:</string>
     <string name="logout">Logout</string>
+    <string name="change_email_address">Change Email Address</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="change_password">Change Password</string>
 </resources>
