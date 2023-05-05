@@ -56,18 +56,72 @@ class RegisterActivity : AppCompatActivity() {
             val email = register_email.text.toString()
             val pwd = register_password.text.toString()
             val re_pwd = register_re_password.text.toString()
+            var emailError = ""
+            var passwordError = ""
             if (pwd == re_pwd){
-                Handler().postDelayed({
-                    val intent =
-                        Intent(this@RegisterActivity, LoginActivity::class.java)
-                    startActivity(intent);
-                    finish();
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
 
-                }, SPLASH_TIME_OUT.toLong());
-                signup(email, pwd)
-            } else {Toast.makeText(this@RegisterActivity, "The two password are different!", Toast.LENGTH_SHORT)
-                .show()
+                if (register_email.text.toString().isEmpty()) {
+                    emailError += "The email mustn't be empty\n"
+                }
+
+                if (register_password.text.toString().isEmpty()) {
+                    passwordError += "The password mustn't be empty\n"
+                }
+
+                val patternEmail = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+                if (!patternEmail.matches(email)) {
+                    emailError += "Please enter a valid email\n"
+                }
+
+                val patternPassLen = Regex("^.{8,}\$")
+                if (!patternPassLen.matches(pwd)) {
+                    passwordError += "The password can't be shorter than 8 characters\n"
+                }
+
+                val patternPassWs = Regex("^(?!.\\s).\$")
+                if (!patternPassWs.matches(pwd)) {
+                    passwordError += "The password mustn't contain any whitespace characters\n"
+                }
+
+                val patternPassUc = Regex("^(?=.[A-Z]).\$")
+                if (!patternPassUc.matches(pwd)) {
+                    passwordError += "The password must contain at least 1 uppercase letter\n"
+                }
+
+                val patternPassLc = Regex("^(?=.[a-z]).\$")
+                if (!patternPassLc.matches(pwd)) {
+                    passwordError += "The password must contain at least 1 lowercase letter\n"
+                }
+
+                val patternPassNum = Regex("^(?=.\\d).\$")
+                if (!patternPassNum.matches(pwd)) {
+                    passwordError += "The password must contain at least 1 digit\n"
+                }
+
+                val patternPassSpec = Regex("^(?=.[!\"#\$%&'()+,-./:;<=>?@[\\\\]^`{|}~]).\\$")
+                if (!patternPassSpec.matches(pwd)) {
+                    passwordError += "The password must contain at least 1 special character (!\"#\$%&'()+,-./:;<=>?@[]^_`{|}~)\n"
+                }
+
+                val patternPassFull = Regex("(?<=^[A-Za-z0-9[!\\\"#\$%&'()*+,-./:;<=>?@\\\\\\\\[\\\\\\\\]^_`{|}~]]{0,7})[A-Za-z0-9[!\\\"#\$%&'()*+,-./:;<=>?@\\\\\\\\[\\\\\\\\]^_`{|}~]]{8,}(?<=[A-Za-z0-9[!\\\"#\$%&'()*+,-./:;<=>?@\\\\\\\\[\\\\\\\\]^_`{|}~]])")
+                if (patternPassFull.matches(pwd) && patternEmail.matches(email)) {
+                    Handler().postDelayed({
+                        val intent =
+                            Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+
+                    }, SPLASH_TIME_OUT.toLong());
+                    signup(email, pwd)
+                }
+
+                register_email.error = emailError
+                register_password.error = passwordError
+                register_re_password.error = passwordError
+
+            } else {
+                passwordError += "The passwords are different\n"
             }
         }
     }
@@ -87,7 +141,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun signup(email: String, password: String){
         val retIn = RetrofitInstance.getRetrofitInstance().create(ApiInterface::class.java)
         val registerInfo = UserBody(email,password)
-
         retIn.registerUser(registerInfo).enqueue(object :
             Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {

@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -72,12 +73,19 @@ class SettingsActivity : AppCompatActivity() {
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
+        val context = applicationContext
+        val duration = Toast.LENGTH_SHORT
+
         getNotes()
         getProfile()
         getLang()
 
         val changeEmail = findViewById<Button>(R.id.changeEmail)
         changeEmail.setOnClickListener{
+
+
+
+
             val builder: MaterialAlertDialogBuilder = MaterialAlertDialogBuilder(this)
             builder.setTitle("Change Email")
             val input = EditText(this)
@@ -85,21 +93,37 @@ class SettingsActivity : AppCompatActivity() {
             input.inputType = InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
             builder.setView(input)
             builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+
                 val newEmail = input.text.toString()
-                MaterialAlertDialogBuilder(this)
-                    .setTitle("Are you sure you want to change your email address?")
-                    .setNegativeButton("No") { dialog, which ->
-                    }
-                    .setPositiveButton("Yes") { dialog, which ->
-                        changeEmail(newEmail)
-                        startActivity(Intent(this@SettingsActivity, LoadingActivity::class.java))
-                        val sharedPreferences =
-                            getSharedPreferences("Important", Context.MODE_PRIVATE)
-                        val editor = sharedPreferences.edit()
-                        editor.putString("access_token", "")
-                        editor.apply()
-                    }
-                    .show()
+
+                var emailError = ""
+                if (input.text.toString().isEmpty()) {
+                    emailError += "The email mustn't be empty\n"
+                }
+
+                val patternEmail = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+                if (!patternEmail.matches(newEmail)) {
+                    emailError += "Please enter a valid email\n"
+                }
+
+                if (patternEmail.matches(newEmail)) {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Are you sure you want to change your email address?")
+                        .setNegativeButton("No") { dialog, which ->
+                        }
+                        .setPositiveButton("Yes") { dialog, which ->
+                            changeEmail(newEmail)
+                            startActivity(Intent(this@SettingsActivity, LoadingActivity::class.java))
+                            val sharedPreferences =
+                                getSharedPreferences("Important", Context.MODE_PRIVATE)
+                            val editor = sharedPreferences.edit()
+                            editor.putString("access_token", "")
+                            editor.apply()
+                        }
+                        .show()
+                }
+                val toast = Toast.makeText(context, emailError, duration)
+                toast.show()
             })
             builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
             builder.show()
@@ -113,22 +137,63 @@ class SettingsActivity : AppCompatActivity() {
             input.setHint("Password")
             input.inputType = InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD
             builder.setView(input)
+
             builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
                 val newPass = input.text.toString()
-                MaterialAlertDialogBuilder(this)
-                    .setTitle("Are you sure you want to change your password?")
-                    .setNegativeButton("No") { dialog, which ->
-                    }
-                    .setPositiveButton("Yes") { dialog, which ->
-                        changePass(newPass)
-                        startActivity(Intent(this@SettingsActivity, LoadingActivity::class.java))
-                        val sharedPreferences =
-                            getSharedPreferences("Important", Context.MODE_PRIVATE)
-                        val editor = sharedPreferences.edit()
-                        editor.putString("access_token", "")
-                        editor.apply()
-                    }
-                    .show()
+                var passwordError = ""
+                if (input.text.toString().isEmpty()) {
+                    passwordError += "The password mustn't be empty\n"
+                }
+
+                val patternPassLen = Regex("^.{8,}\$")
+                if (!patternPassLen.matches(newPass)) {
+                    passwordError += "The password can't be shorter than 8 characters\n"
+                }
+
+                val patternPassWs = Regex("^(?!.\\s).\$")
+                if (!patternPassWs.matches(newPass)) {
+                    passwordError += "The password mustn't contain any whitespace characters\n"
+                }
+
+                val patternPassUc = Regex("^(?=.[A-Z]).\$")
+                if (!patternPassUc.matches(newPass)) {
+                    passwordError += "The password must contain at least 1 uppercase letter\n"
+                }
+
+                val patternPassLc = Regex("^(?=.[a-z]).\$")
+                if (!patternPassLc.matches(newPass)) {
+                    passwordError += "The password must contain at least 1 lowercase letter\n"
+                }
+
+                val patternPassNum = Regex("^(?=.\\d).\$")
+                if (!patternPassNum.matches(newPass)) {
+                    passwordError += "The password must contain at least 1 digit\n"
+                }
+
+                val patternPassSpec = Regex("^(?=.[!\"#\$%&'()+,-./:;<=>?@[\\\\]^`{|}~]).\\$")
+                if (!patternPassSpec.matches(newPass)) {
+                    passwordError += "The password must contain at least 1 special character (!\"#\$%&'()+,-./:;<=>?@[]^_`{|}~)\n"
+                }
+
+                val patternPassFull = Regex("(?<=^[A-Za-z0-9[!\\\"#\$%&'()*+,-./:;<=>?@\\\\\\\\[\\\\\\\\]^_`{|}~]]{0,7})[A-Za-z0-9[!\\\"#\$%&'()*+,-./:;<=>?@\\\\\\\\[\\\\\\\\]^_`{|}~]]{8,}(?<=[A-Za-z0-9[!\\\"#\$%&'()*+,-./:;<=>?@\\\\\\\\[\\\\\\\\]^_`{|}~]])")
+                if (patternPassFull.matches(newPass)) {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Are you sure you want to change your password?")
+                        .setNegativeButton("No") { dialog, which ->
+                        }
+                        .setPositiveButton("Yes") { dialog, which ->
+                            changePass(newPass)
+                            startActivity(Intent(this@SettingsActivity, LoadingActivity::class.java))
+                            val sharedPreferences =
+                                getSharedPreferences("Important", Context.MODE_PRIVATE)
+                            val editor = sharedPreferences.edit()
+                            editor.putString("access_token", "")
+                            editor.apply()
+                        }
+                        .show()
+                }
+                val toast = Toast.makeText(context, passwordError, duration)
+                toast.show()
             })
             builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
             builder.show()
